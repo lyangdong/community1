@@ -459,7 +459,7 @@ export class ClassifyComponent implements OnInit {
     var parentId = -1;
     for(var i=0;i < all.length;i++){
       if(parentId == all[i].p_id){
-        const node = {name: all[i].name, pId: 0, id: all[i].id};
+        const node = {name: all[i].name, pId: 0, id: all[i].id,open:true};
         const children = all[i].items;
         arr.push(node);
         this.sortNode2(node.id, children, arr);
