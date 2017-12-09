@@ -61,21 +61,7 @@ export class ChildChannelModifyComponent implements OnInit {
     // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
 
 
-    var zNodes = [
-      // {id: 1, pId: 0, name: "can check 1",},
-      // {id: 11, pId: 1, name: "can check 1-1",},
-      // {id: 111, pId: 11, name: "can check 1-1-1"},
-      // {id: 112, pId: 11, name: "can check 1-1-2"},
-      // {id: 12, pId: 1, name: "can check 1-2", open: true},
-      // {id: 121, pId: 12, name: "can check 1-2-1"},
-      // {id: 122, pId: 12, name: "can check 1-2-2"},
-      // {id: 2, pId: 0, name: "can check 2", checked: true, open: true},
-      // {id: 21, pId: 2, name: "can check 2-1"},
-      // {id: 22, pId: 2, name: "can check 2-2", open: true},
-      // {id: 221, pId: 22, name: "can check 2-2-1", checked: true},
-      // {id: 222, pId: 22, name: "can check 2-2-2"},
-      // {id: 23, pId: 2, name: "can check 2-3"}
-    ];
+    var zNodes = [];
 // zNodes = this.treeData;
     var code;
 
@@ -195,7 +181,7 @@ export class ChildChannelModifyComponent implements OnInit {
       let str = $('.column-title').eq(i).attr('value');
       columnIds.push(str);
     }
-    if(columnIds.length>1&&parseInt(this.channelDetails.temId)<4){
+    if(columnIds.length>1&&parseInt(this.channelDetails.temId)<=4){
       layer.msg('当频道关联多个栏目时，请选择多栏目模板');
       return;
     }
