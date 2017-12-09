@@ -247,12 +247,12 @@ export class ChildChannelModifyComponent implements OnInit {
     for(let i=0;i<children.length;i++){
       if(pid == children[i].p_id){
         if(oldArr.indexOf(children[i].id)!=-1){
-          const node = {name: children[i].name,pId: pid, id: children[i].id,checked:true};
+          const node = {name: children[i].name,pId: pid, id: children[i].id,open:true,checked:true};
           const children2 = children[i].items;
           arr.push(node);
           this.sortNode2(node.id, children2, arr,oldArr);
         }else {
-          const node = {name: children[i].name,pId: pid, id: children[i].id};
+          const node = {name: children[i].name,pId: pid,open:true, id: children[i].id};
           const children2 = children[i].items;
           arr.push(node);
           this.sortNode2(node.id, children2, arr,oldArr);
