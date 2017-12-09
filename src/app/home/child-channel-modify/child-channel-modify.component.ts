@@ -216,25 +216,47 @@ export class ChildChannelModifyComponent implements OnInit {
   };//修改子频道信息
 
   sort2(all) {
-    var arr = [];
-    var parentId = -1;
-    for(var i=0;i < all.length;i++){
+    let arr = [];
+    let oldArr =[];
+    // console.log(this.channelDetails.column);
+    for(let j=0;j<this.channelDetails.column.length;j++){
+      let str = this.channelDetails.column[j].id;
+      oldArr.push(str)
+    }
+    // console.log(oldArr);
+    let parentId = -1;
+    // console.log(this.channelDetails.column);
+    for(let i=0;i < all.length;i++){
       if(parentId == all[i].p_id){
-        const node = {name: all[i].name, pId: 0, id: all[i].id,open:true};
-        const children = all[i].items;
-        arr.push(node);
-        this.sortNode2(node.id, children, arr);
+        if(oldArr.indexOf(all[i].id)!=-1){
+          let node= {name: all[i].name, pId: 0, id: all[i].id,open:true,checked:true};
+          const children = all[i].items;
+          arr.push(node);
+          this.sortNode2(node.id, children, arr,oldArr);
+        }else {
+          let node = {name: all[i].name, pId: 0, id: all[i].id,open:true};
+          const children = all[i].items;
+          arr.push(node);
+          this.sortNode2(node.id, children, arr , oldArr);
+        }
       }
     }
     return arr;
   }
-  sortNode2(pid, children, arr){
-    for(var i=0;i<children.length;i++){
+  sortNode2(pid, children, arr, oldArr){
+    for(let i=0;i<children.length;i++){
       if(pid == children[i].p_id){
-        const node = {name: children[i].name,pId: pid, id: children[i].id};
-        const children2 = children[i].items;
-        arr.push(node);
-        this.sortNode2(node.id, children2, arr);
+        if(oldArr.indexOf(children[i].id)!=-1){
+          const node = {name: children[i].name,pId: pid, id: children[i].id,checked:true};
+          const children2 = children[i].items;
+          arr.push(node);
+          this.sortNode2(node.id, children2, arr,oldArr);
+        }else {
+          const node = {name: children[i].name,pId: pid, id: children[i].id};
+          const children2 = children[i].items;
+          arr.push(node);
+          this.sortNode2(node.id, children2, arr,oldArr);
+        }
       }
     }
   }
