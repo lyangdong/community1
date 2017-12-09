@@ -207,8 +207,8 @@ export class ChildChannelModifyComponent implements OnInit {
         // layer.msg('账号或密码错误');
         layer.msg(res.json().text);return;
       }else {
-
         layer.msg('保存成功');
+        this.router.navigate(['/home/child-channel/'+this.pid])
       }
     },erro =>{
       layer.msg('获取网络信息失败，请检查网络');
