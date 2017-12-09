@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Http} from '@angular/http';
 import { RequestService } from '../../services/request.service';
@@ -13,7 +13,6 @@ declare let layer:any;
   styleUrls: ['./child-channel-modify.component.css']
 })
 export class ChildChannelModifyComponent implements OnInit {
-
   pid:any;
   childChannelId:any;
   show:any;

@@ -13,6 +13,7 @@ declare let layer:any;
   styleUrls: ['./child-channel-add.component.css']
 })
 
+
 export class ChildChannelAddComponent implements OnInit {
 
   pid:any;
