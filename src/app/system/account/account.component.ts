@@ -15,6 +15,7 @@ declare let layer  : any;
 export class AccountComponent implements OnInit {
 
   tokenId:any;
+  accountId:any;
   communityId:any;
   accountList:any=[];
   addAccount:any={sex:'',accountNo:'',alias:'',password:'',rePassword:'',type:'',};
@@ -126,8 +127,8 @@ export class AccountComponent implements OnInit {
   };//获取账号
 
   getAccountDetails=(event)=>{
-    let id = $(event.target).attr('value');
-    this.requestService.getAccountDetails(this.tokenId,id).subscribe(res=>{
+    this.accountId = $(event.target).attr('value');
+    this.requestService.getAccountDetails(this.tokenId,this.accountId).subscribe(res=>{
       if(res.json().code!=0){
         // layer.msg('账号或密码错误');
         layer.msg(res.json().text);return;
@@ -175,6 +176,7 @@ export class AccountComponent implements OnInit {
       }else {
         layer.msg('修改成功');
         $('.btn-close').click();
+        this.queryAccount(1);
       }
     },erro =>{
       if(erro.type==3){
