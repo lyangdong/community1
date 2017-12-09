@@ -6,9 +6,95 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<link rel="icon" type="image/x-icon" href="favicon.ico">-->
+
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/layer/3.0.3/skin/default/layer.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/zTreeStyle/zTreeStyle.css">
+  <link rel="stylesheet" href="assets/css/loading.css">
+
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+  <!--<script src="https://cdn.bootcss.com/ckeditor/4.7.3/ckeditor.js"></script>-->
+
+  <!--<script src="https://cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>-->
+  <!--<script src="https://cdn.ckeditor.com/4.7.0/full-all/ckeditor.js"></script>-->
+  <!--<script src="assets/ckeditor/ckeditor.js"></script>-->
+  <!--<script src="assets/ckeditor/ckeditor.js"></script>-->
+  <!--<script src=" http://cdn.ckeditor.com/4.5.11/full-all/plugins/divarea/plugin.js"></script>-->
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!--分页插件-->
+  <script src="https://cdn.bootcss.com/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"></script>
+
+  <!--引入树插件-->
+  <script src="assets/js/jquery.ztree.core.min.js"></script>
+  <script src="assets/js/jquery.ztree.excheck.min.js"></script>
+  <style>
+    .spinner {
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      left: 15px;
+      top: 15px;
+    }
+
+    .cube1, .cube2 {
+      background-color: #333;
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      -webkit-animation: cubemove 1.8s infinite ease-in-out;
+      animation: cubemove 1.8s infinite ease-in-out;
+    }
+
+    .cube2 {
+      -webkit-animation-delay: -0.9s;
+      animation-delay: -0.9s;
+    }
+
+    @-webkit-keyframes cubemove {
+      25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
+      50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
+      75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
+      100% { -webkit-transform: rotate(-360deg) }
+    }
+
+    @keyframes cubemove {
+      25% {
+        transform: translateX(42px) rotate(-90deg) scale(0.5);
+        -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+      } 50% {
+          transform: translateX(42px) translateY(42px) rotate(-179deg);
+          -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+        } 50.1% {
+            transform: translateX(42px) translateY(42px) rotate(-180deg);
+            -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+          } 75% {
+              transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+              -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+            } 100% {
+                transform: rotate(-360deg);
+                -webkit-transform: rotate(-360deg);
+              }
+    }
+  </style>
+
 </head>
 <body>
   <app-root></app-root>
+  <div id="loading_con">
+    <div id="loading" class="wrapp">
+      <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

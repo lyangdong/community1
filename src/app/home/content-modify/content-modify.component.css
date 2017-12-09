@@ -1,0 +1,64 @@
+#contentModify{
+  min-width: 1080px;
+}
+.content-modify{
+  width: 1200px;
+  margin: 0 auto;
+}
+.add-group{
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+.add-group label{
+  line-height: 36px;
+  text-align: center;
+}
+.img-group img{
+  display: inline-block;
+  width: 240px;
+  height: 180px;
+}
+.img-group button{
+  position: absolute;
+  bottom: 90px;
+  right: 40px;
+}
+.add-content-instruction{
+  position: absolute;
+  bottom: 60px;
+  right: 20px;
+  color: red;
+}
+.add-group-btn{
+  padding-left: 15px;
+}
+.add-group-btn button{
+  margin-right: 10px;
+  padding: 6px 15px 6px;
+}
+.content-add-radio{
+  line-height: 36px;
+}
+.content-add-radio input{
+  margin-left: 10px;
+}
+.ztree{
+  position: absolute;
+  background-color: white;
+  padding: 5px 10px;
+  display: none;
+  z-index: 10;
+}
+.tree-node{
+  padding: 6px 30px;
+  width: 120px;
+}
+.filesImg{
+  background-color: lightgrey;
+  width: 240px;
+  height: 180px;
+}
+.file-upload-indicator{
+  padding: 15px 0;
+  color: red;
+}

@@ -1,0 +1,4 @@
+.home-right{
+  float: right;
+  width: calc(100% - 240px);
+}

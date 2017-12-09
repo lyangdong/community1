@@ -1,0 +1,200 @@
+<div id="account " class="padding-side-15">
+  <div class="nav">
+    <ol class="breadcrumb">
+      <!--<li><a href="#" routerLink="/home/school-list">学校</a></li>-->
+      <!--<li><a href="#" routerLink="/home/channel" >频道管理</a></li>-->
+      <!--<li><a href="#" routerLink="/home/child-channel/1" >子频道管理</a></li>-->
+      <li class="active">账号管理</li>
+    </ol>
+  </div>
+  <div class="line-bottom"></div>
+  <div class="row head">
+    <div class="left margin-right-2">
+      <label for="roleSelect" class="left">角色</label>
+     <div class="left">
+       <select [(ngModel)]="queryType" (change)="queryAccount(1)" name="queryType" id="roleSelect" class="form-control">
+         <option value="">全部</option>
+         <option value="2">城市管理员</option>
+         <option value="4">多城市管理员</option>
+         <option value="5">居民</option>
+       </select>
+     </div>
+    </div>
+    <div class="left margin-right-2 margin-left-1">
+      <input [(ngModel)]="accountQuery" type="text" placeholder="请输入账号查询" class="form-control">
+    </div>
+    <div class="left margin-right-2">
+      <button type="button" class="btn btn-success" (click)="queryAccount(1)">查询</button>
+    </div>
+    <div class="right">
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addAccount">新建</button>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="account-form">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th class="text-center col-xs-1">序号</th>
+        <th class="text-center col-xs-2">账号</th>
+        <th class="text-center col-xs-1">姓名</th>
+        <th class="text-center col-xs-1">角色</th>
+        <th class="text-center col-xs-2">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of accountList; let i =index">
+          <td class="text-center">{{i+1}}</td>
+          <td class="text-center">{{account.accountNo}}</td>
+          <td class="text-center">{{account.alias}}</td>
+          <td *ngIf="account.type==1" class="text-center">超级管理员</td>
+          <td *ngIf="account.type==2" class="text-center">城市管理员</td>
+          <td *ngIf="account.type==3" class="text-center">成员</td>
+          <td *ngIf="account.type==4" class="text-center">多城市管理员</td>
+          <td *ngIf="account.type==5" class="text-center">成员</td>
+          <td class="text-center">
+            <!--<a href="" routerLink="/system/resident-details/{{account.accountid}}">详情</a>-->
+            <a href="" [attr.value]="account.accountid" data-toggle="modal" data-target="#updateAccount" (click)="getAccountDetails($event)">修改</a>
+            <a *ngIf="account.type!=1" href="javascript:void(0)" [attr.value]="account.accountid" (click)="deleteAccount($event)">删除</a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    <div class="footer-right right">
+      <ul id="pagination-details" class="pagination-sm"></ul>
+    </div>
+  </div>
+<!--新建账号-->
+  <div class="modal fade" id="addAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="edit pull-right" id="edit"><span class="glyphicon glyphicon-pencil"></span></button> -->
+          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove close"></span></button>
+          <h4 class="modal-title">添加账号</h4>
+        </div>
+        <div class="modal-body">
+          <form id="newcommunityInfo">
+            <div class="form-group">
+              <label for="">管理员账号</label>
+              <input [(ngModel)]="addAccount.accountNo" type="text" class="form-control" id="accountNo" name="accountNo" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">密码</label>
+              <input [(ngModel)]="addAccount.password"  type="password" class="form-control" id="password" name="password" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">确认密码</label>
+              <input [(ngModel)]="addAccount.rePassword"  type="password" class="form-control" id="rePassword" name="password" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">城市</label>
+              <select [(ngModel)]="addAccount.communityId"  class="form-control" id="community" name="community" >
+                <option *ngFor="let c of communitys" value="{{c.communityid}}">{{c.communityName}}</option>
+              </select>
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">管理员姓名</label>
+              <input [(ngModel)]="addAccount.alias"  type="text" class="form-control" id="alias" name="alias" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <div class="btn-group" data-toggle="buttons">
+                <label class="">管理员性别</label>
+                <div class="btn bg-lightgray active">
+                  <input type="radio" id="man" name="sex" autocomplete="off" checked value="1"> 男
+                </div>
+                <div class="btn bg-lightgray">
+                  <input type="radio" id="woman" name="sex" autocomplete="off" value="0"> 女
+                </div>
+              </div>
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">账号类型</label>
+              <select [(ngModel)]="addAccount.type"  name="type" class="form-control"  >
+                <option value="2">城市管理员</option>
+                <option value="4">多城市管理员</option>
+              </select>
+              <div class="showRed text-danger"></div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" (click)="addAcount()" >确定</button>
+          <!-- (click)="uploadCommunity($event)" -->
+        </div>
+      </div>
+    </div>
+  </div>
+<!--修改账号-->
+  <div class="modal fade" id="updateAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="edit pull-right" id="edit"><span class="glyphicon glyphicon-pencil"></span></button> -->
+          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove close"></span></button>
+          <h4 class="modal-title">账号详情</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="">管理员账号</label>
+              <input [(ngModel)]="update.accountNo" type="text" class="form-control" id="accountNoUpdate" name="accountNo" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">密码</label>
+              <input [(ngModel)]="update.password"  type="password" class="form-control" id="passwordUpdate" name="password" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div *ngIf="update.type==2" class="form-group">
+              <label for="">城市</label>
+              <select [(ngModel)]="update.communityId"  class="form-control" id="communityUpdate" name="community" >
+                <option  *ngFor="let c of communitys" value="{{c.communityid}}">{{c.communityName}}</option>
+              </select>
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">管理员姓名</label>
+              <input [(ngModel)]="update.alias"  type="text" class="form-control" id="aliasUpdate" name="alias" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <div class="btn-group" data-toggle="buttons">
+                <label class="">管理员性别</label>
+                <div class="btn bg-lightgray active">
+                  <input type="radio"  name="sexUpdate" class="man" autocomplete="off" checked value="1"> 男
+                </div>
+                <div class="btn bg-lightgray">
+                  <input type="radio"  name="sexUpdate" class="woman" autocomplete="off" value="0"> 女
+                </div>
+              </div>
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label >账号类型</label>
+              <select [(ngModel)]="update.type"  name="type" class="form-control"  >
+                <option value="2">城市管理员</option>
+                <option value="4">多城市管理员</option>
+                <option value="3">居民</option>
+              </select>
+              <div class="showRed text-danger"></div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" (click)="updateAccount()" >确定</button>
+          <!-- (click)="uploadCommunity($event)" -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

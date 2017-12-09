@@ -1,0 +1,31 @@
+.channel-add-btn{
+  padding-top: 10px;
+  border-bottom: 1px black solid;
+  height: 51px;
+  margin: 15px 0px 15px;
+}
+.channel-add-btn button{
+  margin-right: 30px;
+  padding-left: 19px;
+  padding-right: 19px;
+}
+.channel-content .table{
+  font-size: 16px;
+}
+.border-right-blue{
+  border-right: 1px #337ab7 solid;
+}
+.channel-content .table a{
+  padding: 0px 8px 0px;
+  font-size: 14px;
+}
+#temSelect{
+  width: 165px;
+}
+#order{
+  width: 165px;
+}
+#channel .modal .active{
+  background-color: #5cb85c;
+  color:white;
+}

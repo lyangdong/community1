@@ -1,0 +1,110 @@
+#city{
+  min-width: 1280px;
+}
+.head{
+  padding: 10px 25px;
+  background-color: #F6F8F9;
+  margin: 20px 0;
+}
+.head select{
+  width: 160px;
+}
+.head button{
+  padding: 6px 30px;
+
+}
+.new-community-btn{
+  padding: 20px;
+}
+.community{
+  background-color: #F6F8F9;
+}
+.city-content-out-box{
+  margin-bottom: 20px;
+}
+.city-content-box{
+  width: 400px;
+  height: 300px;
+  border: 1px lightgrey solid;
+  background-color: white;
+}
+.community-gly{
+  padding: 10px;
+  float: right;
+  color:lightgrey;
+}
+.community-gly:hover{
+  text-decoration: none;
+  color: grey;
+}
+.community-close{
+  padding: 10px;
+}
+.community-edit{
+  padding: 10px;
+  color: grey;
+}
+.city-community-title h3{
+  color: lightskyblue;
+  padding: 6px 40px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.city-community-act{
+  padding: 10px 40px;
+}
+.city-community-act li{
+  padding: 5px 0;
+  font-size: 16px;
+  width: 315px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.city-community-btn{
+  padding: 10px 40px;
+}
+.city-community-btn button{
+  padding: 6px 30px;
+}
+.modal-body label{
+  float: left;
+  margin-left: 20px;
+  width: 85px;
+  line-height: 34px;
+
+}
+.modal input{
+  float: left;
+  width: 420px;
+}
+.modal select{
+  float: left;
+  width: 180px;
+}
+.modal .form-group{
+  display: block;
+  clear: both;
+  height: 40px;
+}
+.modal input[type='radio']:focus{
+  height: 0!important;
+}
+.modal input[type='radio']:active{
+  outline: none;
+}
+.modal .active{
+  background-color: #5cb85c;
+  color:white;
+}
+.modal .active:focus{
+  outline: none;
+}
+.box-border{
+  text-decoration: none;
+  color: #666666;
+  z-index: 10;
+}
+.box-border:hover{
+  color: #333333;
+}

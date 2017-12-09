@@ -1,0 +1,92 @@
+<div id="login">
+  <div class="login-bg">
+    <div class="login-box">
+      <h4>登录</h4>
+      <div class="input-box glyphicon glyphicon-user"><input name="account" [(ngModel)]="account" type="text" placeholder="请输入账号"></div>
+      <div class="input-box glyphicon glyphicon-lock"><input name="password" [(ngModel)]="password" type="password" placeholder="请输入密码" (keyup.enter)="login()"></div>
+      <div class="account-handel margin-top-1">
+        <div class="account-handel-left left">
+          <input type="checkbox">记住账号
+        </div>
+        <div class="account-handel-left right">
+          <a href="" data-toggle="modal" data-target="#forgetPwd">忘记密码</a>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="login-btn">
+        <button type="button" class="btn btn-success" (click)="login()">登录</button>
+      </div>
+    </div>
+    <div class="login-code">
+      <div class="code-img"></div>
+      <p class="margin-top-1">扫描并关注</p>
+      <p>微信公众平台</p>
+    </div>
+    <!--<div class="login-footer">顺势为</div>-->
+  </div>
+<!--忘记密码-->
+  <div class="modal fade" id="forgetPwd" tabindex="-1" role="dialog" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;
+          </button>
+          <h4 class="modal-title" id="forgetLabel">
+            忘记密码
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div id="forgetTabContent" class="tab-content">
+            <div  class="tab-pane fade in active" id="forgetEmail">
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="forgetAccountEmail" class="col-sm-2 control-label">邮箱账号</label>
+                  <div class="col-sm-7">
+                    <input [(ngModel)]="accountEmail" name="accountEmail" type="text" class="form-control" id="forgetAccountEmail"
+                           placeholder="请输入绑定的邮箱账号">
+                  </div>
+                  <button class="btn btn-info btn-getCode" (click)="getCode($event)" >获取验证码</button>
+                </div>
+                <div class="form-group">
+                  <label for="forgetEmailCaptcha" class="col-sm-2 control-label">验证码</label>
+                  <div class="col-sm-7">
+                    <input [(ngModel)]="code" name="code" type="text" class="form-control" id="forgetEmailCaptcha" placeholder="输入验证码">
+                  </div>
+                </div>
+                <div class="form-group" style="display: none">
+                  <label for="displayNone" class="col-sm-2 control-label">隐藏</label>
+                  <div class="col-sm-7">
+                    <input type="text" class="form-control" id="displayNone"
+                           placeholder="输入新密码">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="forgetEmailPwd1" class="col-sm-2 control-label">新密码</label>
+                  <div class="col-sm-7">
+                    <input [(ngModel)]="passwordUpdate" name="passwordUpdate" type="password" class="form-control" id="forgetEmailPwd1"
+                           placeholder="输入新密码">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="forgetEmailPwd2" class="col-sm-2 control-label">确认密码</label>
+                  <div class="col-sm-7">
+                    <input  [(ngModel)]="passwordUpdate2"  name="passwordUpdate2" type="password"  class="form-control" id="forgetEmailPwd2"
+                           placeholder="请再次输入密码">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-close" data-dismiss="modal">关闭
+          </button>
+          <button type="button" class="btn btn-primary" (click)="updatePwd()">
+            确定
+          </button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+  </div>
+</div>

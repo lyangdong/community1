@@ -1,0 +1,56 @@
+<div id="content">
+  <div class="nav">
+    <ol class="breadcrumb">
+      <!--<li><a href="#" routerLink="/home/school-list">学校</a></li>-->
+      <li class="active">内容信息</li>
+    </ol>
+  </div>
+
+  <div class="content-header">
+    <form class="" role="form">
+      <div class="form-group col-xs-1 margin-right-2">
+          <div class="tree-node btn btn-success" (click)="fadeout()">
+            {{classifyName}}
+          </div>
+          <ul id="treeDemo" class="ztree"></ul>
+      </div>
+      <div class="form-group col-xs-3">
+        <input [(ngModel)]="title" name="title" type="text" class="form-control margin-left-1" placeholder="请输入文章的标题" value="">
+      </div>
+      <div class="form-group col-xs-2 no-padding-left">
+        <button type="button" class="btn btn-success padding-side-20" (click)="getTitlecatcontents()">搜索</button>
+      </div>
+      <div class="form-group col-xs-2 right">
+        <button type="button" class="btn btn-success right content-add-button" routerLink="/home/add-content">新增</button>
+      </div>
+    </form>
+  </div>
+  <div class="content-list">
+      <ul>
+        <li class="no-padding" *ngFor="let content of catcontents">
+          <div class="content-list-box">
+            <div class="content-box-title">
+              <div class="box-title-left left">
+                <span class="box-title" routerLink="/home/content-modify/{{content.id}}" >{{content.title}}</span>
+                <span>{{content.creator_name}}</span>
+              </div>
+              <div class="box-title-right right">
+                <span>{{getDateTen(content.create_time)}}</span>
+                <button *ngIf="content.is_top==0" [attr.value]="content.id" type="button" class="btn btn-info" (click)="stickPost($event)">置顶</button>
+                <button *ngIf="content.is_top==1" [attr.value]="content.id" type="button" class="btn btn-info" (click)="cancelStickPost($event)">取消</button>
+              </div>
+            </div>
+            <a href="" routerLink="/home/content-modify/{{content.id}}">
+              <div>
+                <img src="{{content.cover_url}}" alt="">
+              </div>
+            </a>
+            <div class="content-list-box-footer">
+              <div><a class="col-xs-6 text-center border-right-1 glyphicon glyphicon-pencil" href="" routerLink="/home/content-modify/{{content.id}}"></a></div>
+              <div><a class="col-xs-6 text-center glyphicon glyphicon-trash" href="javascript:void (0)" [attr.value]="content.id" (click)="deleteCatContent($event)" ></a></div>
+            </div>
+          </div>
+        </li>
+      </ul>
+  </div>
+</div>

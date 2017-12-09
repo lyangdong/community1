@@ -1,0 +1,9 @@
+#role{
+  min-width: 1080px;
+}
+.role-add-btn{
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}

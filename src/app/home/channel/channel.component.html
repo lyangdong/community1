@@ -1,0 +1,110 @@
+<div id="channel">
+  <div class="channel-header">
+    <div class="nav">
+      <ol class="breadcrumb">
+        <!--<li><a href="#" routerLink="/home/school-list">学校</a></li>-->
+        <!--<li><a href="#" >设备</a></li>-->
+        <li class="active">频道管理</li>
+      </ol>
+    </div>
+    <div class="channel-add-btn ">
+      <button type="button" class="btn btn-success right" data-toggle="modal" data-target="#addChannelModal">添加频道</button>
+    </div>
+  </div>
+  <div class="channel-content">
+    <div class="url-hidden"> <input style="" id="url1" type="text" value="http://sq.babyscloud.com/wechat/page/index.html?communityId={{communityId}}&channelId={{copeChannelId}}"> </div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th class="text-center col-xs-2">频道名称</th>
+        <th class="text-left col-xs-6">频道简介</th>
+        <th class="text-center col-xs-3">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let channel of channels">
+        <td class="text-center">{{channel.name}}</td>
+        <td class="text-left">{{channel.introduce}}</td>
+        <td class="text-center">
+          <a class="border-right border-right-blue" href="javascript:void (0)" [attr.value]="channel.id"  (click)="copyUrl($event)">复制链接</a>
+          <a href="" class="border-right border-right-blue" [attr.value]="channel.id" (click)="getChannelDetails($event)" data-toggle="modal" data-target="#updateChannelModal">信息修改</a>
+          <a href="" class="border-right border-right-blue" routerLink="/home/child-channel/{{channel.id}}">编辑</a>
+          <a href="javascript:void (0)" class="border-right" [attr.value]="channel.id" (click)="deleteChannel($event)">删除</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--添加频道-->
+  <div class="modal fade modal-reset" id="addChannelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="edit pull-right" id="edit"><span class="glyphicon glyphicon-pencil"></span></button> -->
+          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove close"></span></button>
+          <h4 class="modal-title">新建频道</h4>
+        </div>
+        <div class="modal-body">
+          <form id="newcommunityInfo">
+            <div class="form-group">
+              <label for="communityName">频道名称</label>
+              <input type="text" class="form-control" id="communityName" name="communityName" [(ngModel)]="addChannelInfo.name" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="address">频道简介</label>
+              <input [(ngModel)]="addChannelInfo.introduce" type="text" class="form-control" id="address" name="address" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label  for="order">显示顺序</label>
+              <input type="text" [(ngModel)]="order"  name="order" id="order" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-default btn-close" data-dismiss="modal">取消</button>
+          <button type="button" id="upload" class="btn btn-primary" (click)="addChannel()" >确定</button>
+          <!-- (click)="uploadCommunity($event)" -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--修改频道-->
+  <div class="modal fade modal-reset" id="updateChannelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="edit pull-right" id="edit"><span class="glyphicon glyphicon-pencil"></span></button> -->
+          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove close"></span></button>
+          <h4 class="modal-title">修改频道</h4>
+        </div>
+        <div class="modal-body">
+          <form id="updateCommunityInfo">
+            <div class="form-group">
+              <label for="communityName">频道名称</label>
+              <input type="text" class="form-control" id="updateCommunityName" name="updateCommunityName" [(ngModel)]="undateChannelInfo.name" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="address">频道简介</label>
+              <input [(ngModel)]="undateChannelInfo.introduce" type="text" class="form-control" id="updateAddress" name="address" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label  for="order">显示顺序</label>
+              <input type="text" [(ngModel)]="undateChannelInfo.order"  style="width: 165px" name="order" id="updateOrder" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-close" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" (click)="updateChannel()" >确定</button>
+          <!-- (click)="uploadCommunity($event)" -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

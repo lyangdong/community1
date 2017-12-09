@@ -1,0 +1,8 @@
+#authority{
+  min-width: 1080px;
+}
+.authority-add-btn button{
+  float: right;
+  padding: 6px 30px;
+  margin: 20px;
+}

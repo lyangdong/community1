@@ -1,0 +1,23 @@
+li a{
+  color: white;
+}
+li a:hover{
+  background-color: #2DCA93;
+}
+li a:focus{
+  background-color: #2DCA93;
+}
+#menuAside{
+  height: 100%;
+  background-color: #425069;
+  overflow: hidden;
+ }
+
+#menuAside .nav{
+  padding-top: 20px;
+}
+.no-hover a:hover{
+  background-color:#425069;
+}
+.aside{
+}

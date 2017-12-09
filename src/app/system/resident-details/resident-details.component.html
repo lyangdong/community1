@@ -1,0 +1,123 @@
+<div id="residentDetails" class="padding-side-15">
+  <div class="nav">
+    <ol class="breadcrumb">
+      <!--<li><a href="#" routerLink="/home/school-list">学校</a></li>-->
+      <!--<li><a href="#" routerLink="/home/channel" >频道管理</a></li>-->
+      <li><a href="#" routerLink="/system/resident" >居民管理</a></li>
+      <li class="active">居民详情</li>
+    </ol>
+  </div>
+  <div class="line-bottom"></div>
+  <div class="resident-details-form">
+    <div class="details-title glyphicon glyphicon-user">个人基本信息</div>
+    <div class="details-content">
+      <div class="col-xs-10">
+        <div class="details-group half">
+          <label class="left" for="serialNo">排&nbsp; 队 号</label>
+          <div>
+            <input id="serialNo" name="serialNo" type="text" class="form-control"  [(ngModel)]="openId" disabled="true">
+            <!-- value="{{resident.accountNo}}" -->
+          </div>
+        </div>
+        <div class="details-group half">
+          <label for="idCard">身份证号</label>
+          <div><input id="idCard" name="idCard" type="text" class="form-control" [(ngModel)]="idCard" disabled="true" />
+            <!-- value="{{resident.idCard}}"  -->
+          </div>
+        </div>
+        <div class="details-group half">
+          <label for="name">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+          <div>
+            <input id="name" name="name" type="text" class="form-control" [(ngModel)]="name" disabled="true" />
+            <!-- value="{{resident.alias}}" -->
+          </div>
+        </div>
+        <div class="details-group half">
+          <label for="sex">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+          <div>
+            <select name="sex" id="sex" class="form-control" disabled="true" [(ngModel)]="sex">
+              <option value="0">男</option><option value="1">女</option>
+            </select>
+            <!-- <input name="sex" id="sex" type="text" class="form-control" [(ngModel)]="sex" disabled="true"> -->
+          </div>
+        </div>
+        <div class="details-group half">
+          <label class="left" for="birthday">出生日期</label>
+          <div class="left">
+            <input id="birthday" name="birthday" type="text" class="form-control"
+                   [(ngModel)]="birthday"
+                   disabled="true"/>
+            <!-- value="{{resident.birthday}}" -->
+          </div>
+        </div>
+        <div class="details-group half">
+          <label for="nation">民&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;族</label>
+          <div>
+            <!--            <select name="nation" id="nation" class="form-control" disabled="true">
+                         <option>
+                        [(ngModel)]="nation"
+                         {{resident.nation}}
+                         </option>
+                       </select> -->
+            <input name="nation" id="nation" type="text" class="form-control" [(ngModel)]="nation" disabled="true">
+          </div>
+        </div>
+        <div class="details-group half">
+          <label for="education">文化程度</label>
+          <div>
+            <input id="education" name="education" type="text" class="form-control" [(ngModel)]="culture" disabled="true">
+            <!-- value="{{resident.culture}}" -->
+          </div>
+        </div>
+        <div class="details-group half">
+          <label for="zipCode">住址邮编</label>
+          <div>
+            <input id="zipCode" name="zipCode" type="text" class="form-control" [(ngModel)]="postcode" disabled="true">
+            <!-- value="{{resident.postcode}}"  -->
+          </div>
+        </div>
+        <div class="details-group half">
+          <label for="telPhone">联系电话</label>
+          <div>
+            <input id="telPhone" name="telPhone" type="text" class="form-control" [(ngModel)]="telPhone" disabled="true">
+            <!-- value="{{resident.phone}}" -->
+          </div>
+        </div>
+        <div class="details-group half">
+          <label for="cellPhone">手机电话</label>
+          <div>
+            <input id="cellPhone" name="cellPhone" type="text" class="form-control" [(ngModel)]="phone" disabled="true">
+            <!-- value="{{resident.telPhone}}" -->
+          </div>
+        </div>
+        <div class="details-group col-xs-12 all">
+          <label for="householdRegister">户籍地址</label>
+          <div>
+            <input id="householdRegister" name="householdRegister" type="text" class="form-control"  [(ngModel)]="permanentAddress" disabled="true">
+            <!-- value="{{resident.permanentAddress}}"  -->
+          </div>
+        </div>
+        <div class="details-group col-xs-12 all">
+          <label for="liveAddress" >居住地址</label>
+          <div>
+            <input id="liveAddress" name="liveAddress" type="text" class="form-control" [(ngModel)]="residentialAddress"  disabled="true">
+            <!-- value="{{resident.residentialAddress}}" -->
+          </div>
+        </div>
+        <!--<div class="details-group col-xs-12 all">-->
+        <!--<label for="companyAddress">工作地址</label>-->
+        <!--<div>-->
+        <!--<input id="companyAddress" name="companyAddress" type="text" class="form-control">-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<button routerLink="/system/resident">返回</button>-->
+        <button routerLink="/system/resident">返回</button>
+        <button id="change">修改</button>
+        <button id="queding" (click)="updateResident()">确认</button>
+      </div>
+      <div class="col-xs-2 head-img">
+        <img src="../../../assets/images/2.png" alt="">
+      </div>
+    </div>
+  </div>
+</div>

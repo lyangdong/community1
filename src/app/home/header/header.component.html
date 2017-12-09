@@ -1,0 +1,15 @@
+<div id="header" class="col-xs-12">
+  <div class="header-left left">
+   <div class="logo left">
+     <img class="left" src="../../../assets/images/header-logo.png" alt="">
+     <div class="left">攀枝花智慧社区</div>
+   </div>
+    <ul class="nav left">
+      <li class="left"><a class="active" href="#" routerLink="/home/classify">宣传管理</a></li>
+      <li *ngIf="userType==1||userType==4" class="left"><a href="#" routerLink="/system">系统管理</a></li>
+    </ul>
+  </div>
+  <div class="header-right right">
+    <a href="javascript:void (0)" (click)="exitLand()">退出登录</a>
+  </div>
+</div>

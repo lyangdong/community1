@@ -1,0 +1,307 @@
+<div id="city" class="padding-side-15">
+  <div class="nav">
+    <ol class="breadcrumb">
+      <!--<li><a href="#" routerLink="/home/school-list">学校</a></li>-->
+      <!--<li><a href="#" routerLink="/home/channel" >频道管理</a></li>-->
+      <!--<li><a href="#" routerLink="/home/child-channel/1" >子频道管理</a></li>-->
+      <li class="active">城市管理</li>
+    </ol>
+  </div>
+  <div class="line-bottom"></div>
+
+  <div class="city-content">
+    <div class="row head">
+      <div class="left margin-right-2">
+        <select [(ngModel)]="pid" (change)="getAreaCity(pid)" name="communityProvince" id="communityProvince" class="form-control">
+          <option value="-1">所有城市</option>
+          <option  *ngFor="let p of provinces" value="{{p.id}}">{{p.name}}</option>
+        </select>
+      </div>
+      <div class="left margin-right-2">
+        <select [(ngModel)]="cid" name="communityCity" id="communityCity" class="form-control">
+          <option *ngFor="let c of cities" value="{{c.id}}">{{c.name}}</option>
+        </select>
+      </div>
+      <div class="left margin-right-2">
+        <button type="button" class="btn btn-success" (click)="getQueryCommunity()">查询</button>
+        <!--<button type="button" class="btn btn-success" (click)="getAllCommunity()">查看所有</button>-->
+      </div>
+    </div>
+     <div class="row community">
+      <div class="col-md-12 new-community-btn">
+        <div class="btn btn-success right" data-toggle="modal" data-target="#newCommunityModal">新建城市</div>
+      </div>
+       <div class="city-content col-xs-12">
+         <div *ngFor="let community of communitys" class="queryCommunity col-xs-4 city-content-out-box">
+          <div class="city-content-box">
+            <div class="">
+              <a href="javascript:void (0)" class="glyphicon glyphicon-remove community-gly" [attr.value]="community.communityid" (click)="deleteCommunity($event)" ></a>
+              <a href=""  class="glyphicon glyphicon-edit community-gly"
+                 name="{{community.communityid}}" (click)="seeCommunity($event)" data-toggle="modal" data-target="#chgCommunityModal" ></a>
+              <div class="clear"></div>
+            </div>
+            <a href="javascript:void(0)" class="box-border">
+              <div class="city-community-title"><h3>城市：{{community.communityName}}</h3></div>
+              <div class="city-community-act">
+                <ul>
+                  <li>地址：{{community.address}}</li>
+                  <li>描述：{{community.description}}</li>
+                  <li>创建日期：{{community.createDate}}</li>
+                </ul>
+              </div>
+            </a>
+            <div class="city-community-btn">
+              <!--<button class="btn btn-success" [attr.value]="community.communityid" (click)="seeCommunity($event)" data-toggle="modal" data-target="#seeCommunityModal">查看</button>-->
+              <button class="btn btn-success" [attr.value]="community.communityid" (click)="goInCommunity($event)">进入</button>
+            </div>
+          </div>
+         </div>
+         <!--<div *ngFor="let c of allCommunitys" class="allCommunity col-xs-4 city-content-out-box">-->
+           <!--<div class="city-content-box">-->
+             <!--<div class="">-->
+               <!--<a href="javascript:void (0)" class="glyphicon glyphicon-remove community-gly" [attr.value]="c.community.communityid" (click)="deleteCommunity($event)" ></a>-->
+               <!--<a href="javascript:void(0)"  class="glyphicon glyphicon-edit community-gly"-->
+                  <!--name="{{c.community.communityid}}" (click)="seeCommunity($event)" data-toggle="modal" data-target="#chgCommunityModal" ></a>-->
+               <!--<div class="clear"></div>-->
+             <!--</div>-->
+             <!--<a href="javascript:void(0)" class="box-border">-->
+               <!--<div class="city-community-title"><h3>城市：{{c.community.communityName}}</h3></div>-->
+               <!--<div class="city-community-act">-->
+                 <!--<ul>-->
+                   <!--<li>地址：{{c.community.address}}</li>-->
+                   <!--<li>描述：{{c.community.description}}</li>-->
+                   <!--<li>创建日期：{{c.community.createDate}}</li>-->
+                 <!--</ul>-->
+               <!--</div>-->
+             <!--</a>-->
+             <!--<div class="city-community-btn">-->
+               <!--&lt;!&ndash;<button class="btn btn-success" [attr.value]="community.communityid" (click)="seeCommunity($event)" data-toggle="modal" data-target="#seeCommunityModal">查看</button>&ndash;&gt;-->
+               <!--<button class="btn btn-success" [attr.value]="c.community.communityid" (click)="goInCommunity($event)">进入</button>-->
+             <!--</div>-->
+           <!--</div>-->
+         <!--</div>-->
+       </div>
+    </div>
+  </div>
+
+
+
+  <!--新建城市模态框-->
+  <div class="modal fade" id="newCommunityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="edit pull-right" id="edit"><span class="glyphicon glyphicon-pencil"></span></button> -->
+          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove close"></span></button>
+          <h4 class="modal-title">新建城市</h4>
+        </div>
+        <div class="modal-body">
+          <form id="newcommunityInfo">
+            <div class="form-group">
+              <label for="communityName">城市名称</label>
+              <input type="text" class="form-control" id="communityName" name="communityName" [(ngModel)]="newcommunityInfo.communityName" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="newCommunityProvince">省份</label>
+              <select [(ngModel)]="newPid" (change)="getAreaCity(newPid)" name="newCommunityProvince" id="newCommunityProvince" class="form-control">
+                <option  *ngFor="let p of provinces" value="{{p.id}}">{{p.name}}</option>
+              </select>
+              <div class="showRed text-danger"></div>
+              <label style="width: 40px" for="newCommunityCity">城市</label>
+              <select [(ngModel)]="newCid" name="newCommunityCity" id="newCommunityCity" class="form-control">
+                <option *ngFor="let nC of newCitise" value="{{nC.id}}">{{nC.name}}</option>
+              </select>
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="address">地址</label>
+              <input [(ngModel)]="newcommunityInfo.address" type="text" class="form-control" id="address" name="address" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">描述</label>
+              <input [(ngModel)]="newcommunityInfo.description" type="text" class="form-control" id="description" name="description" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">管理员姓名</label>
+              <input [(ngModel)]="newcommunityInfo.alias"  type="text" class="form-control" id="alias" name="alias" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <div class="btn-group" data-toggle="buttons">
+                <label class="">管理员性别</label>
+                <div class="btn bg-lightgray active">
+                  <input type="radio" id="man" name="sex" autocomplete="off" checked value="0"> 男
+                </div>
+                <div class="btn bg-lightgray">
+                  <input type="radio" id="woman" name="sex" autocomplete="off" value="1"> 女
+                </div>
+              </div>
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">管理员账号</label>
+              <input [(ngModel)]="newcommunityInfo.accountNo" type="text" class="form-control" id="accountNo" name="accountNo" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">密码</label>
+              <input [(ngModel)]="newcommunityInfo.password"  type="password" class="form-control" id="password" name="password" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">确认密码</label>
+              <input [(ngModel)]="newcommunityInfo.rePassword"  type="password" class="form-control" id="rePassword" name="password" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">联系电话</label>
+              <input [(ngModel)]="newcommunityInfo.phoneNumber" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-close" data-dismiss="modal">取消</button>
+          <button type="button" id="upload" class="btn btn-primary" (click)="addCommunity()" >确定</button>
+          <!-- (click)="uploadCommunity($event)" -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--修改城市信息模态框-->
+  <div class="modal fade" id="chgCommunityModal" tabindex="-1" role="dialog" aria-labelledby="chgCommunityModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="edit pull-right" id="edit"><span class="glyphicon glyphicon-pencil"></span></button> -->
+          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></button>
+          <h4 class="modal-title">修改城市</h4>
+        </div>
+        <div class="modal-body">
+          <form id="chgcommunityInfo">
+            <div class="form-group">
+              <label for="updateCommunityName">城市名称</label>
+              <input type="text" class="form-control" id="updateCommunityName" name="updateCommunityName" [(ngModel)]="updateCommunityInfo.communityName" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="updateCommunityProvince">省份</label>
+              <select [(ngModel)]="newPid" (change)="getAreaCity(newPid)" name="updateCommunityProvince" id="updateCommunityProvince" class="form-control">
+                <option  *ngFor="let p of provinces" value="{{p.id}}">{{p.name}}</option>
+              </select>
+              <div class="showRed text-danger"></div>
+              <label style="width: 40px" for="newCommunityCity">城市</label>
+              <select [(ngModel)]="newCid" name="newCommunityCity" id="updateCommunityCity" class="form-control">
+                <option *ngFor="let nC of newCitise" value="{{nC.id}}">{{nC.name}}</option>
+              </select>
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="updateAddress">地址</label>
+              <input [(ngModel)]="updateCommunityInfo.address" type="text" class="form-control" id="updateAddress" name="address" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="">描述</label>
+              <input [(ngModel)]="updateCommunityInfo.description" type="text" class="form-control" id="updateDescription" name="description" placeholder="">
+              <div class="showRed text-danger"></div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-close " data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" (click)="updateCommunity()" >确定</button>
+          <!-- (click)="uploadCommunity($event)" -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--查看城市信息模态框-->
+  <!--<div class="modal fade" id="seeCommunityModal" tabindex="-1" role="dialog" aria-labelledby="seeCommunityModal">-->
+    <!--<div class="modal-dialog" role="document">-->
+      <!--<div class="modal-content">-->
+        <!--<div class="modal-header">-->
+          <!--&lt;!&ndash; <button type="button" class="edit pull-right" id="edit"><span class="glyphicon glyphicon-pencil"></span></button> &ndash;&gt;-->
+          <!--<button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></button>-->
+          <!--<h4 class="modal-title">新建城市</h4>-->
+        <!--</div>-->
+        <!--<div class="modal-body">-->
+          <!--<form id="newcommunityInfo">-->
+            <!--<div class="form-group">-->
+              <!--<label for="communityName">城市名称</label>-->
+              <!--<input type="text" class="form-control" id="communityName" name="communityName" [(ngModel)]="newcommunityInfo.communityName" placeholder="">-->
+              <!--<div class="showRed text-danger"></div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+              <!--<label for="newCommunityProvince">省份</label>-->
+              <!--<select [(ngModel)]="newPid" (change)="getAreaCity(newPid)" name="newCommunityProvince" id="newCommunityProvince" class="form-control">-->
+                <!--<option  *ngFor="let p of provinces" value="{{p.id}}">{{p.name}}</option>-->
+              <!--</select>-->
+              <!--<div class="showRed text-danger"></div>-->
+              <!--<label style="width: 40px" for="newCommunityCity">城市</label>-->
+              <!--<select [(ngModel)]="newCid" name="newCommunityCity" id="newCommunityCity" class="form-control">-->
+                <!--<option *ngFor="let nC of newCitise" value="{{nC.id}}">{{nC.name}}</option>-->
+              <!--</select>-->
+              <!--<div class="showRed text-danger"></div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+              <!--<label for="address">地址</label>-->
+              <!--<input [(ngModel)]="newcommunityInfo.address" type="text" class="form-control" id="address" name="address" placeholder="">-->
+              <!--<div class="showRed text-danger"></div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+              <!--<label for="">描述</label>-->
+              <!--<input [(ngModel)]="newcommunityInfo.description" type="text" class="form-control" id="description" name="description" placeholder="">-->
+              <!--<div class="showRed text-danger"></div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+              <!--<label for="">管理员姓名</label>-->
+              <!--<input [(ngModel)]="newcommunityInfo.alias"  type="text" class="form-control" id="alias" name="alias" placeholder="">-->
+              <!--<div class="showRed text-danger"></div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+              <!--<div class="btn-group" data-toggle="buttons">-->
+                <!--<label class="">管理员性别</label>-->
+                <!--<div class="btn bg-lightgray active">-->
+                  <!--<input type="radio" id="man" name="sex" autocomplete="off" checked value="0"> 男-->
+                <!--</div>-->
+                <!--<div class="btn bg-lightgray">-->
+                  <!--<input type="radio" id="woman" name="sex" autocomplete="off" value="1"> 女-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="showRed text-danger"></div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+              <!--<label for="">管理员账号</label>-->
+              <!--<input [(ngModel)]="newcommunityInfo.accountNo" type="text" class="form-control" id="accountNo" name="accountNo" placeholder="">-->
+              <!--<div class="showRed text-danger"></div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+              <!--<label for="">密码</label>-->
+              <!--<input [(ngModel)]="newcommunityInfo.password"  type="password" class="form-control" id="password" name="password" placeholder="">-->
+              <!--<div class="showRed text-danger"></div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+              <!--<label for="">确认密码</label>-->
+              <!--<input [(ngModel)]="newcommunityInfo.rePassword"  type="password" class="form-control" id="rePassword" name="password" placeholder="">-->
+              <!--<div class="showRed text-danger"></div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+              <!--<label for="">联系电话</label>-->
+              <!--<input [(ngModel)]="newcommunityInfo.phoneNumber" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="">-->
+              <!--<div class="showRed text-danger"></div>-->
+            <!--</div>-->
+          <!--</form>-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+          <!--<button type="button" id="cancel" class="btn " data-dismiss="modal">取消</button>-->
+          <!--<button type="button" id="upload" class="btn btn-primary" (click)="addCommunity()" >确定</button>-->
+          <!--&lt;!&ndash; (click)="uploadCommunity($event)" &ndash;&gt;-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+</div>

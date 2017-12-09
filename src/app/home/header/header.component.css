@@ -1,0 +1,52 @@
+#header{
+  padding-top: 5px;
+  background-color: #2E384A;
+  color: white;
+  min-width: 760px;
+}
+.header-left{
+}
+.logo img{
+  width: 55px;
+  height: 55px;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+.logo div{
+  font-size: 20px;
+  line-height: 55px;
+}
+#header .nav{
+  line-height: 37px;
+  font-size: 20px;
+  border-bottom: 3px;
+  margin-left: 40px;
+}
+#header .nav li a{
+  color: white;
+  padding: 10px 20px 10px;
+}
+#header .nav li a:hover{
+  background-color: #2E384A;
+  border-bottom: 3px #2DCA93 solid;
+}
+#header .nav li a:focus{
+  background-color: #2E384A;
+  border-bottom: 3px #2DCA93 solid;
+}
+#header .nav li a:active{
+  background-color: #2E384A;
+  border-bottom: 3px #2DCA93 solid;
+}
+#header .active{
+  background-color: #2E384A;
+  border-bottom: 3px #2DCA93 solid;
+}
+.header-right{
+  line-height: 37px;
+  margin-top: 10px;
+}
+.header-right a{
+  padding: 10px;
+  color: white;
+}

@@ -1,0 +1,22 @@
+.zhongliang{font-weight: 700;}
+.classify-tem{
+  height: 300px;
+}
+img{
+  width: 218px;
+}
+.cemian{
+  border-left: 1px solid;
+}
+.cemian2{border-left: 1px solid;padding-bottom:50px;}
+#pindao{
+  min-width: 1080px;
+}
+#lanmu {
+  min-width: 1080px;
+  border-bottom: 1px solid;
+  padding-left: 40px;
+}
+.channel-title{
+  border-right: 1px lightgrey solid;
+}

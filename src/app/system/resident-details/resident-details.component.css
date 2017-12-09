@@ -1,0 +1,42 @@
+.resident-details-form{
+  width: 1080px;
+  margin: 0 auto;
+}
+.details-title{
+  padding: 30px 15px 5px 15px;
+  font-size: 18px;
+  border-bottom: 2px #EB7A2A solid;
+  width: 180px;
+  color: #EB7A2A;
+}
+.details-content{
+  border: 1px lightgrey solid;
+  background-color: #F6F6F6;
+  height: 560px;
+  padding-top: 20px;
+}
+.details-group{
+  padding: 10px 0;
+  width: 100%;
+}
+.details-group label{
+  float: left;
+  line-height: 34px;
+}
+.details-group div{
+  float: left;
+  margin-left: 15px;
+  width: 75%;
+}
+.half{
+  float: left;
+  width: 50%;
+}
+.all input{
+  width: 759px;
+}
+.head-img img{
+  width: 120px;
+  height: 140px;
+  margin-top: 8px;
+}

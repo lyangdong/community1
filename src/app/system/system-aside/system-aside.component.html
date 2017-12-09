@@ -1,0 +1,39 @@
+<div id="systemAside">
+  <ul class="nav nav-pills  nav-stacked">
+    <li class="margin-top-1 margin-bottom-1">
+      <a class=" active" style="font-size: 16px" routerLink="/system/first-page">
+        <span class="col-md-offset-1 glyphicon glyphicon-home "> 首页</span>
+      </a>
+    </li>
+    <li class="no-hover" >
+      <a style="font-size: 16px" >
+        <span class="col-md-offset-1 glyphicon glyphicon-th-large "> 基础数据</span>
+      </a>
+    </li>
+    <li>
+      <a style="font-size: 16px" routerLink="/system/city">
+        <span class="col-md-offset-3"> 城市管理</span>
+      </a>
+    </li>
+    <li>
+      <a style="font-size: 16px" routerLink="/system/resident">
+        <span class="col-md-offset-3"> 居民管理</span>
+      </a>
+    </li>
+    <li *ngIf="userType==1">
+      <a style="font-size: 16px" routerLink="/system/account">
+        <span class="col-md-offset-3"> 账号管理</span>
+      </a>
+    </li>
+    <!--<li>-->
+      <!--<a style="font-size: 16px" routerLink="/system/role">-->
+        <!--<span class="col-md-offset-3"> 角色管理</span>-->
+      <!--</a>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<a style="font-size: 16px" routerLink="/system/authority">-->
+        <!--<span class="col-md-offset-3"> 分级管理员</span>-->
+      <!--</a>-->
+    <!--</li>-->
+  </ul>
+</div>

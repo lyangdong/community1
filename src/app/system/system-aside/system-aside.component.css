@@ -1,0 +1,19 @@
+li a{
+  color: white;
+}
+li a:hover{
+  background-color: #2DCA93;
+}
+li a:focus{
+  background-color: #2DCA93;
+}
+.no-hover a:hover{
+  background-color:#425069;
+}
+#systemAside{
+  background-color: #425069;
+  height: 1000px;
+}
+#systemAside .nav{
+  padding-top: 20px;
+}

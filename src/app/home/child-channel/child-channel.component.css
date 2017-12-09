@@ -1,0 +1,42 @@
+#childChannel{
+  min-width: 900px;
+}
+.child-channel-add-btn{
+  margin-right: 30px;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+.child-channel-content .table{
+  font-size: 16px;
+}
+.border-right-blue{
+  border-right: 1px #337ab7 solid;
+}
+.child-channel-content .table a{
+  padding: 0 8px 0;
+  font-size: 14px;
+}
+.child-channel-nav{
+  font-size: 18px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: 51px;
+  padding-top: 10px;
+  border-bottom: 1px black solid;
+
+}
+.child-channel-nav a{
+  padding: 0px 15px 0px;
+  line-height: 36px;
+}
+#childModify .modal-dialog{
+ margin-left: 30px;
+}
+.child-channel-column{
+  width: 180px;
+  text-align: center;
+  margin: 0 auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

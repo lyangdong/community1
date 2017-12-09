@@ -1,0 +1,56 @@
+<div id="resident" class="padding-side-15">
+  <div class="nav">
+    <ol class="breadcrumb">
+      <!--<li><a href="#" routerLink="/home/school-list">学校</a></li>-->
+      <!--<li><a href="#" routerLink="/home/channel" >频道管理</a></li>-->
+      <!--<li><a href="#" routerLink="/home/child-channel/1" >子频道管理</a></li>-->
+      <li class="active">居民管理</li>
+    </ol>
+  </div>
+  <div class="line-bottom"></div>
+  <div class="resident-content">
+    <div class="row head">
+
+      <div class="left margin-right-2 margin-left-1">
+        <input [(ngModel)]='queryName' name='queryName' type="text" placeholder="请输入姓名查询" class="form-control">
+      </div>
+      <div class="left margin-right-2">
+        <button type="button" class="btn btn-success"  (click)='queryResident(1)'  >查询</button>
+      </div>
+    </div>
+    <div class="resident-form">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th class="resident-check-box text-center"><input type="checkbox" name="residentCheck"></th>
+          <th>序号</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>民族</th>
+          <th>手机号</th>
+          <th>身份证号</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let r of residents;let i =index;" >
+          <td class="text-center"><input type="checkbox" name="residentCheck"></td>
+          <td>{{i+1}}</td>
+          <td>{{r.alias}}</td>
+          <td>{{(r.sex==0)?"男":"女"}}</td>
+          <td>{{r.nation}}</td>
+          <td>{{r.telPhone}}</td>
+          <td>{{r.idCard}}</td>
+          <td>
+            <a href="javascript:void(0);" routerLink="/system/resident-details/{{r.accountid}}">详情</a>
+            <a class="delete" id="{{r.accountid}}" (click)="deleteUser2($event.target.id)">删除</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="footer-right right">
+        <ul id="pagination-details" class="pagination-sm"></ul>
+      </div>
+    </div>
+  </div>
+</div>

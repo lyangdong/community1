@@ -1,0 +1,64 @@
+<div id="role" class="padding-side-15">
+  <div class="nav">
+    <ol class="breadcrumb">
+      <!--<li><a href="#" routerLink="/home/school-list">学校</a></li>-->
+      <!--<li><a href="#" routerLink="/home/channel" >频道管理</a></li>-->
+      <!--<li><a href="#" routerLink="/home/child-channel/1" >子频道管理</a></li>-->
+      <li class="active">角色管理</li>
+    </ol>
+  </div>
+  <div class="line-bottom"></div>
+  <div class="role-add-btn">
+    <button class="btn btn-success">添加角色</button>
+  </div>
+  <div class="clear"></div>
+  <div class="role-table">
+    <table class="table">
+      <thead>
+      <tr>
+        <th class=" col-xs-2">序号</th>
+        <th class=" col-xs-2">角色名</th>
+        <th class=" col-xs-6">角色描述</th>
+        <th class="text-center col-xs-2">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>0</td>
+        <td class="">公总号服务</td>
+        <td class="">社区公众号服务频道</td>
+        <td class="text-center">
+          <a href="javascript:void(0)" class="" >修改</a>
+          <a href="javascript:void(0)" class="">授权</a>
+        </td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td class="">公总号服务</td>
+        <td class="">社区公众号服务频道</td>
+        <td class="text-center">
+          <a href="javascript:void(0)" class="border-right border-right-blue">复制链接</a>
+          <a href="#" class="border-right border-right-blue" routerLink="/home/child-channel/1">编辑</a>
+          <a href="javascript:void(0)" class="border-right">删除</a>
+        </td>
+      </tr>
+      <!--<tr *ngFor="let data of datas" class="">-->
+      <!--<td class="col-xs-1 text-center">{{data.creator}}</td>-->
+      <!--<td class="col-xs-1 text-center">{{data.schoolName}}</td>-->
+      <!--<td class="col-xs-1 text-center">{{data.address}}</td>-->
+      <!--<td class="col-xs-1 text-center">{{data.createTime}}</td>-->
+      <!--<td class="col-xs-1 text-center">{{data.updateTime}}</td>-->
+      <!--<td class="col-xs-1 text-center">{{data.phoneNumber}}</td>-->
+      <!--<td *ngIf="data.schoolType==0" class="col-xs-1 text-center">公办学校</td>-->
+      <!--<td *ngIf="data.schoolType==1" class="col-xs-1 text-center">私立学校</td>-->
+      <!--<td *ngIf="data.schoolType==2" class="col-xs-1 text-center">公益学校</td>-->
+      <!--<td *ngIf="data.type==0" class="col-xs-1 text-center">幼儿园</td>-->
+      <!--<td *ngIf="data.type==1" class="col-xs-1 text-center">小学</td>-->
+      <!--<td *ngIf="data.type==2" class="col-xs-1 text-center">幼儿园</td>-->
+      <!--<td class="col-xs-1 text-center"><a href="" name="{{data.id}}" data-toggle="modal" data-target="#schoolModify" (click)="achieveSchoolInfo($event)">修改信息</a></td>-->
+      <!--<td class="col-xs-1 text-center"><a routerLink="/home/equipment/{{data.id}}">查看设备</a></td>-->
+      <!--</tr>-->
+      </tbody>
+    </table>
+  </div>
+</div>

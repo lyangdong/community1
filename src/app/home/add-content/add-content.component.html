@@ -1,0 +1,77 @@
+<div id="addContent">
+  <div class="nav">
+    <ol class="breadcrumb">
+      <li><a href="javascript:void(0)" routerLink="/home/content">内容信息</a></li>
+      <li class="active">新增内容</li>
+    </ol>
+  </div>
+  <div class="add-content">
+    <form role="form" class="">
+      <div class="col-xs-12 add-group">
+       <label class="col-xs-2" for="">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类</label>
+       <div class="col-xs-3">
+         <div class="tree-node btn btn-success" (click)="fadeout()">
+           {{parentName}}
+         </div>
+         <ul id="treeDemo" class="ztree"></ul>
+       </div>
+      </div>
+      <div class="col-xs-12 add-group">
+        <label class="col-xs-2 " for="">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</label>
+        <div class="col-xs-5">
+          <input [(ngModel)]="catcontents.title" name="title"  class="form-control col-xs-3" type="text" placeholder="五个字以内">
+        </div>
+      </div>
+      <div class="col-xs-12 add-group img-group">
+        <label class="col-xs-2" for="">封面图片</label>
+        <div class="col-sm-3">
+          <div class="file-upload filesImg" id="filesImg">
+            <img src="" alt="">
+          </div>
+          <input (click)="previewHead()" type="file" style="display: none" class="form-control classifyImg" id="classifyImg"
+                 placeholder="" value="">
+        </div>
+        <div class="col-xs-4">
+          <div class="btn btn-info" onclick='javascript:$("#classifyImg").click();'>选择图片</div>
+          <div class="file-upload-indicator">建议上传尺寸为640*640，大小不超过1M</div>
+        </div>
+      </div>
+      <div class="col-xs-12 add-group">
+        <label class="col-xs-2 " for="">摘&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要</label>
+        <div class="col-xs-8">
+          <textarea maxlength="100"  [(ngModel)]="catcontents.abstractTxt" name="textarea"  cols="30" rows="3" class="form-control" placeholder="最多输100个字符"></textarea>
+        </div>
+      </div>
+      <div class="col-xs-12 add-group">
+        <label class="col-xs-2 " for="">正&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文</label>
+        <div class="col-xs-8">
+          <!--<ckeditor name="ckeditor" [(ngModel)]="catcontents.content" debounce="1000"  [config]="config">-->
+          <!--</ckeditor>-->
+          <div id="editCon" name="content"></div>
+        </div>
+      </div>
+      <div class="col-xs-12 add-group">
+        <label class="col-xs-2 " for="">顺&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序</label>
+        <div class="col-xs-8">
+          <input type="text"  [(ngModel)]="catcontents.order" name="order"  class="form-control col-xs-3" type="text" >
+        </div>
+      </div>
+      <div class="col-xs-12 add-group">
+        <label class="col-xs-2 " for="">外部链接</label>
+        <div class="col-xs-6">
+          <input [(ngModel)]="catcontents.link" name="link" type="text" class="form-control" disabled placeholder="启用外部链接后，正文编辑区失效">
+        </div>
+        <div class="col-xs-3 content-add-radio">
+          <input type="radio" name="radio" class="start">启用
+          <input type="radio" name="radio" class="stop" checked="checked">不启用
+        </div>
+      </div>
+      <div class="col-xs-12 add-group">
+        <div class="add-group-btn col-xs-offset-2">
+          <button type="button" class="btn" routerLink="/home/content">取消</button>
+          <button type="button" class="btn btn-success" (click)="addCatContent()">保存</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<div id="childChannelAdd">
+  <div class="nav">
+    <ol class="breadcrumb">
+      <!--<li><a href="#" routerLink="/home/school-list">学校</a></li>-->
+      <li><a href="#" routerLink="/home/channel" >频道管理</a></li>
+      <li><a href="#" routerLink="/home/child-channel/{{pid}}" >子频道管理</a></li>
+      <li class="active">添加子频道</li>
+    </ol>
+  </div>
+  <!--<div class="colx-xs-12 add-group-header">-->
+    <!--<h6>添加子频道</h6>-->
+  <!--</div>-->
+  <div class="add-from">
+    <div class="col-xs-12 add-group">
+      <label class="col-xs-2" for="">频道名称 <span style="color:red">*</span></label>
+      <div class="col-xs-6">
+        <input [(ngModel)]="addChannelInfo.name" name="name" type="text" class="form-control" placeholder="10个字以内">
+      </div>
+    </div>
+    <div class="col-xs-12 add-group">
+      <label class="col-xs-2">频道介绍 <span style="color:red">*</span></label>
+      <div class="col-xs-6">
+        <input [(ngModel)]="addChannelInfo.introduce" name="introduce" type="text" class="form-control" placeholder="20个字以内">
+      </div>
+    </div>
+    <div class="col-xs-12 add-group">
+      <label class="col-xs-2">关联栏目 <span style="color:red">*</span></label>
+      <div class="col-xs-6 column-case no-padding-right">
+        <ul class="">
+          <li *ngFor="let tree of columnInfos" class="column-box glyphicon glyphicon-folder-close">
+            <span class="column-title" style="color:black" [attr.value]="tree.id">{{tree.name}}</span>
+            <!--<button type="button" class="close close-btn" ><span>&times;</span></button>-->
+          </li>
+        </ul>
+      </div>
+      <div class="col-xs-2">
+        <button type="button" class="btn btn-info child-channel-choose-btn" data-toggle="modal" data-target="#relationColumn">选择</button>
+      </div>
+    </div>
+    <div class="col-xs-12 add-group">
+      <label class="col-xs-2" for="">是否显示 <span style="color:red">*</span></label>
+      <div class="col-xs-4 channel-radio">
+        <input type="radio" name="show" value="1" id="channelShow" checked><label for="channelShow">显示 </label>
+        <input type="radio" name="show" value="0" id="channelFade" ><label for="channelFade">不显示 </label>
+      </div>
+    </div>
+    <div class="col-xs-12 add-group">
+      <label class="col-xs-2" for="">显示顺序 <span style="color:red">*</span></label>
+      <div class="col-xs-2">
+        <input type="text" [(ngModel)]="order" name="order" class="form-control">
+      </div>
+    </div>
+    <div class="col-xs-12 add-group">
+      <label class="col-xs-2" for="">模板选择 <span style="color:red">*</span></label>
+      <div class="col-xs-6">
+        <select [(ngModel)]="temId" name="temId" class="form-control">
+          <option value="1">单栏目模板一</option>
+          <option value="2">单栏目模板二</option>
+          <option value="3">单栏目模板三</option>
+          <option value="4">单栏目模板四</option>
+          <option value="5">多栏目模板一</option>
+          <option value="6">多栏目模板二</option>
+          <option value="7">多栏目模板三</option>
+          <option value="8">多栏目模板四</option>
+          <option value="9">多栏目模板五</option>
+          <option value="10">多栏目模板六</option>
+          <option value="11">多栏目模板七</option>
+          <option value="12">多栏目模板八</option>
+          <option value="13">多栏目模板九</option>
+        </select>
+      </div>
+      <div class="col-xs-6">
+        <button type="button" class="btn btn-success choose-btn" (click)="addChildChannel()">保存添加</button>
+      </div>
+    </div>
+  </div>
+<!--栏目添加模态框-->
+  <div class="modal fade" id="relationColumn" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;
+          </button>
+          <h4 class="modal-title">
+            添加栏目
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="modal-column-add">
+            <div class="column-add-left left">
+              <h5>从下面中的栏目中选择</h5>
+              <div class="column-add-form column-all">
+                <ul id="treeDemo" class="ztree"></ul>
+              </div>
+            </div>
+            <div class="column-add-right right">
+              <h5>已经选择的栏目</h5>
+              <div class="column-add-form column-select">
+                <ul>
+                  <li *ngFor="let info of treeCheckedInfos" class="column-add-box">
+                    <a class="glyphicon glyphicon-th-list" href="javascript:void(0)" [attr.value]="info.id"> {{info.name}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-close" data-dismiss="modal">关闭
+          </button>
+          <button type="button" class="btn btn-primary" (click)="sure()">
+            确定
+          </button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+  </div>
+</div>

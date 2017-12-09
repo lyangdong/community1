@@ -1,0 +1,50 @@
+#firstPage{
+  min-width: 1180px;
+}
+.line-bottom{
+  border-bottom: 1px lightgrey solid;
+}
+.statistic h4{
+  display: block;
+  padding: 15px;
+}
+.statistic .box-title span{
+  display: inline-block;
+  padding: 0;
+  height: 17px;
+  width: 17px;
+  border-radius: 50%;
+  background-color:#2CCB93;
+  margin-right: 10px;
+}
+.box-title i{
+  display: inline-block;
+  height: 100%;
+  width: 0;
+  vertical-align: middle;
+}
+.statistic-content-box{
+  font-size: 30px;
+  font-weight: bold;
+  padding: 15px;
+  height: 270px;
+}
+.statistic-content-box span{
+}
+.statistic-content-box ul{
+  margin-left: 45px;
+}
+.statistic-content-box ul li div{
+  border: 1px lightgrey solid;
+  width: 250px;
+  height: 165px;
+  padding-top: 20px;
+  box-shadow: 5px 5px 3px #999999;
+}
+.statistic-content-box div img{
+  display: block;
+  width: 43px;
+  height: 43px;
+  margin: 0 auto 8px;
+
+}

@@ -1,0 +1,15 @@
+#resident{
+  min-width: 1080px;
+}
+.head{
+  padding: 10px 25px;
+  background-color: #F6F8F9;
+  margin: 20px 0;
+}
+.head button{
+  padding: 6px 30px;
+}
+
+.resident-content .head input{
+  width: 240px;
+}
