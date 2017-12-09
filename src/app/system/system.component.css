@@ -1,4 +1,11 @@
 .first-right{
   float: right;
   width: calc(100% - 240px);
+  display: table-cell;
+}
+.system{
+  /*display: table;*/
+}
+.menu-aside{
+  /*display: table-cell;*/
 }
