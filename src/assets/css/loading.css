@@ -2,10 +2,10 @@ html,body{width: 100%;height: 100%;margin: 0;}
 #wrapper{
   background-color:rgba(0,0,0,.06);
 }
-#loading_con,.loading_con{
+#loading_con{
   width: 100%;height: 100%;background: #9995;background: rgba(50,50,50,0.5);
   /* filter: alpha(opacity=0.5); */
-  position: absolute;top:0;left: 0;z-index: 19891010;
+  position: fixed;top:0;left: 0;z-index: 19891010;
 }
 #loading_con .content {
   padding:15px;
