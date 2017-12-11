@@ -35,11 +35,11 @@
   margin-left: 45px;
 }
 .statistic-content-box ul li div{
-  border: 1px lightgrey solid;
   width: 250px;
   height: 165px;
   padding-top: 20px;
-  box-shadow: 5px 5px 3px #999999;
+  box-shadow:2px 2px 2px #dadada,4px 4px 3px #e8e8e8,5px 5px 5px #f8f8f8,-1px -1px 1px #f4f4f4,-2px -2px 1px #f8f8f8,-3px -3px 1px #fbfbfb;
+  /*box-shadow:-2px -2px 5px #f4f4f4,-4px -4px 5px #f8f8f8,-5px -5px 5px #fbfbfb;*/
 }
 .statistic-content-box div img{
   display: block;
