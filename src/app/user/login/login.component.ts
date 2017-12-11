@@ -13,6 +13,7 @@ declare let layer:any;
 })
 export class LoginComponent implements OnInit {
 
+  checked:boolean=true;
   account:any;
   password:any;
   accountEmail:any='';
@@ -24,6 +25,12 @@ export class LoginComponent implements OnInit {
   constructor(private http:Http,private requestService : RequestService,private router : Router) { }
 
   ngOnInit() {
+    // console.log(this.checked);
+    if(localStorage.checked == 'false'){
+      this.checked = false;
+    }else {
+      this.account = localStorage.account;
+    }
     sessionStorage.communityId = '';
     sessionStorage.communityName = '';
     sessionStorage.position = '';
@@ -41,10 +48,14 @@ export class LoginComponent implements OnInit {
     this.requestService.login(this.account,this.password).subscribe(res=>{
       if(res.json().code!=0){
         // layer.msg('账号或密码错误');
-        $('#loading_con').fadeOut();layer.msg(res.json().text);return;
+        $('#loading_con').fadeOut();
+        layer.msg(res.json().text);return;
       }
       else{
+        localStorage.account = this.account;
+        localStorage.checked = this.checked;
         // console.log(sessionStorage.type);
+          // console.log( localStorage.account);
         if(res.json().target.user.type=='1'){
             this.router.navigate(['/system'])
 
@@ -55,7 +66,7 @@ export class LoginComponent implements OnInit {
         }
         console.log(res.json());
         layer.msg('登陆成功');
-        $('#loading_con').fadeOut();
+        // $('#loading_con').fadeOut();
       }
       // $('#loading_con').fadeOut();
       sessionStorage.communityId = res.json().target.user.communityId;
