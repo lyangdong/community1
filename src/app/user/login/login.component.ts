@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
         }else {
           this.router.navigate(['/home'])
         }
-        console.log(res.json());
+        // console.log(res.json());
         layer.msg('登陆成功');
         // $('#loading_con').fadeOut();
       }
