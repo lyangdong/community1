@@ -1,4 +1,9 @@
 .first-right{
-  float: right;
+  float: left;
   width: calc(100% - 240px);
+}
+.menu-aside{
+  float: left;
+}
+.first-right{
 }
