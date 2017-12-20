@@ -13,8 +13,8 @@ export class RequestService {
     // this.IP ='http://116.62.166.183:8090';
     // this.IP ='http://112.124.15.205:8090';
 
-      this.IP ='http://192.168.0.204:8095'; //本地服务器地址
-    // this.IP = 'http://116.62.166.183:8090' //线上
+      // this.IP ='http://192.168.0.204:8095'; //本地服务器地址
+    this.IP = 'http://116.62.166.183:8090' //线上
   }
 
   login(accountNo,password){

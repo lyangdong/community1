@@ -1,5 +1,5 @@
-      // var IP='http://116.62.166.183:8090';
-      var IP= 'http://192.168.0.204:8095';//本地地址
+      var IP='http://116.62.166.183:8090';
+      // var IP= 'http://192.168.0.204:8095';//本地地址
       var editor2 = new E('#editCon');
       // editor2.customConfig.uploadImgShowBase64 = true
       // editor2.customConfig.uploadImgServer = 'http://112.124.15.205:8090/upload.do'

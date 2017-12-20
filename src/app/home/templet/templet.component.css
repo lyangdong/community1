@@ -1,22 +1,27 @@
-.zhongliang{font-weight: 700;}
-.classify-tem{
-  height: 300px;
+.Weight{font-weight: normal;color: #777;}
+.edge{border-bottom: 1px solid #ccc;}
+/* .side{border-left: 1px solid #ccc;} */
+/* .side2{border-left: 1px solid;padding-bottom:50px;border-color: #ccc;} */
+.side2{padding-bottom:50px;}
+#lanmu{padding-left: 40px;}
+#myTab{padding-left: 40px;}
+.breadcrumb {
+  margin-top: 15px;
+  background-color: #fff;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 15px;
 }
-img{
+.mb{
+  margin-top: -10px;
+  width: 210px;
+  text-align: right;
+}
+.test{
+  margin-top: 20px;
+}
+.Photo{
   width: 218px;
-}
-.cemian{
-  border-left: 1px solid;
-}
-.cemian2{border-left: 1px solid;padding-bottom:50px;}
-#pindao{
-  min-width: 1080px;
-}
-#lanmu {
-  min-width: 1080px;
-  border-bottom: 1px solid;
-  padding-left: 40px;
-}
-.channel-title{
-  border-right: 1px lightgrey solid;
+  height: 213px;
 }

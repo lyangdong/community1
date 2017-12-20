@@ -49,9 +49,9 @@
           <td class="text-center">{{account.alias}}</td>
           <td *ngIf="account.type==1" class="text-center">超级管理员</td>
           <td *ngIf="account.type==2" class="text-center">城市管理员</td>
-          <td *ngIf="account.type==3" class="text-center">成员</td>
+          <td *ngIf="account.type==3" class="text-center">居民</td>
           <td *ngIf="account.type==4" class="text-center">多城市管理员</td>
-          <td *ngIf="account.type==5" class="text-center">成员</td>
+          <td *ngIf="account.type==5" class="text-center">居民</td>
           <td class="text-center">
             <!--<a href="" routerLink="/system/resident-details/{{account.accountid}}">详情</a>-->
             <a href="" [attr.value]="account.accountid" data-toggle="modal" data-target="#updateAccount" (click)="getAccountDetails($event)">修改</a>
@@ -77,29 +77,29 @@
         <div class="modal-body">
           <form id="newcommunityInfo">
             <div class="form-group">
-              <label for="">管理员账号</label>
+              <label>管理员账号</label>
               <input [(ngModel)]="addAccount.accountNo" type="text" class="form-control" id="accountNo" name="accountNo" placeholder="">
               <div class="showRed text-danger"></div>
             </div>
             <div class="form-group">
-              <label for="">密码</label>
+              <label>密码</label>
               <input [(ngModel)]="addAccount.password"  type="password" class="form-control" id="password" name="password" placeholder="">
               <div class="showRed text-danger"></div>
             </div>
             <div class="form-group">
-              <label for="">确认密码</label>
+              <label >确认密码</label>
               <input [(ngModel)]="addAccount.rePassword"  type="password" class="form-control" id="rePassword" name="password" placeholder="">
               <div class="showRed text-danger"></div>
             </div>
             <div class="form-group">
-              <label for="">城市</label>
-              <select [(ngModel)]="addAccount.communityId"  class="form-control" id="community" name="community" >
+              <label>城市</label>
+              <select [(ngModel)]="addAccount.communityId"  class="form-control" id="community" name="community">
                 <option *ngFor="let c of communitys" value="{{c.communityid}}">{{c.communityName}}</option>
               </select>
               <div class="showRed text-danger"></div>
             </div>
             <div class="form-group">
-              <label for="">管理员姓名</label>
+              <label>管理员姓名</label>
               <input [(ngModel)]="addAccount.alias"  type="text" class="form-control" id="alias" name="alias" placeholder="">
               <div class="showRed text-danger"></div>
             </div>
@@ -117,7 +117,7 @@
             </div>
             <div class="form-group">
               <label for="">账号类型</label>
-              <select [(ngModel)]="addAccount.type"  name="type" class="form-control"  >
+              <select [(ngModel)]="addAccount.type"  name="type" class="form-control" (change)="changeType()" >
                 <option value="2">城市管理员</option>
                 <option value="4">多城市管理员</option>
               </select>

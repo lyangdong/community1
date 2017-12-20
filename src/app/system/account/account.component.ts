@@ -262,6 +262,13 @@ export class AccountComponent implements OnInit {
     })
   };//获取所有城市
 
+  changeType=()=>{
+    if(this.addAccount.type==4){
+      $('#community').attr('disabled',true)
+    }else {
+      $('#community').attr('disabled',false)
+    }
+  }
   // isEmail=(str)=>{
   //   //对电子邮件的验证
   //   let myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;

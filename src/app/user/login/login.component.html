@@ -1,13 +1,15 @@
 <div id="login">
-  <div class="login-bg">
-    <div class="login-title">
-      城市管理系统
+  <div class="login-header">
+    <div class="header-box">
+      <i class="en">Welcome</i>
+      <i class="ch">城市管理系统</i>
     </div>
+  </div>
+  <div class="login-bg">
     <div class="login-box">
-      <h4>登录</h4>
-      <div class="input-box glyphicon glyphicon-user"><input name="account" [(ngModel)]="account" type="text" placeholder="请输入账号"></div>
-      <div class="input-box glyphicon glyphicon-lock"><input name="password" [(ngModel)]="password" type="password" placeholder="请输入密码" (keyup.enter)="login()"></div>
-      <div class="account-handel margin-top-1">
+      <div class="input-box input-box-account"><span class="login-account"></span><input name="account" [(ngModel)]="account" type="text" placeholder="请输入账号"></div>
+      <div class="input-box"><span class="login-pwd"></span><input name="password" [(ngModel)]="password" type="password" placeholder="请输入密码" (keyup.enter)="login()"></div>
+      <div class="account-handel">
         <div class="account-handel-left left">
           <input [(ngModel)]="checked" class="remember" type="checkbox" checked="checked">记住账号
         </div>
@@ -17,7 +19,7 @@
         <div class="clear"></div>
       </div>
       <div class="login-btn">
-        <button type="button" class="btn btn-success" (click)="login()">登录</button>
+        <button type="button" class="btn" (click)="login()">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
       </div>
     </div>
     <div class="login-code">
@@ -25,7 +27,6 @@
       <p class="margin-top-1">扫描并关注</p>
       <p>微信公众号</p>
     </div>
-    <!--<div class="login-footer">顺势为</div>-->
   </div>
 <!--忘记密码-->
   <div class="modal fade" id="forgetPwd" tabindex="-1" role="dialog" aria-labelledby="registerLabel" aria-hidden="true">
