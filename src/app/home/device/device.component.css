@@ -1,0 +1,16 @@
+.modal-body label{
+  float: left;
+  margin-left: 20px;
+  width: 85px;
+  line-height: 34px;
+
+}
+.modal input{
+  float: left;
+  width: 420px;
+}
+.modal .form-group{
+  display: block;
+  clear: both;
+  height: 40px;
+}

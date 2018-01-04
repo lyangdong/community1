@@ -325,29 +325,16 @@ export class RequestService {
   }
   // 获取所有设备
 
-  getSimpleDevice(deviceId,tokenId){
-    const url = this.IP+'/web/getSimpleDevice?deviceId='+deviceId+'&tokenId='+tokenId;;
-    return this.http.get(url);
-  }
-  // 获取单个设备
 
-  addDevice(communityId,deviceSN,name,address,creatorName,tokenId){
-    const url = this.IP+'/web/addDevice';
-    let body = 'communityId='+communityId+'&deviceSN='+deviceSN+'&name='+name+'&address='+address+'&creatorName='+creatorName+'&tokenId='+tokenId;;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
-    return this.http.post(url,body,{headers: headers});
-  }
+  // addDevice(communityId,deviceSN,name,address,creatorName,tokenId){
+  //   const url = this.IP+'/web/addDevice';
+  //   let body = 'communityId='+communityId+'&deviceSN='+deviceSN+'&name='+name+'&address='+address+'&creatorName='+creatorName+'&tokenId='+tokenId;;
+  //   let headers = new Headers();
+  //   headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+  //   return this.http.post(url,body,{headers: headers});
+  // }
   // 添加设备(POST)
 
-  updateDevice(deviceId,deviceSN,name,createName,address,tokenId){
-    const url = this.IP+'/web/updateDevice';
-    let body = 'deviceId='+deviceId+'&deviceSN='+deviceSN+'&name='+name+'&createName='+createName+'&address='+address+'&tokenId='+tokenId;;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
-    return this.http.post(url,body,{headers: headers});
-  }
-  // 修改设备信息
 
 
   uploadImg(file ){//获取access_token
@@ -656,7 +643,39 @@ export class RequestService {
   //修改居民
   queryResident(name,tokenId){
     const url = this.IP+'/web/getAllResident';
-    let body ='name='+name+'&tokenId='+tokenId
+    let body ='name='+name+'&tokenId='+tokenId;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+    return this.http.post(url,body,{headers: headers});
+  }
+
+  getDevice(communityId,tokenId,page){
+    const url = this.IP + '/web/getAllDevice?communityId='+communityId+'&tokenId='+tokenId+'&page='+page;
+    return this.http.get(url)
+  }//获取所有设备
+  addDevice(deviceSN,name,address,creatorName,webAddress,communityId,tokenId){
+    const url = this.IP+'/web/addDevice';
+    let body ='deviceSN='+deviceSN+'&name='+name+'&address='+address+"&creatorName="+creatorName+'&webAddress='+webAddress+"&communityId="+communityId+"&tokenId="+tokenId;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+    return this.http.post(url,body,{headers: headers});
+  }
+  getSimpleDevice(deviceId,tokenId){
+    const url = this.IP+'/web/getSimpleDevice?deviceId='+deviceId+'&tokenId='+tokenId;
+    return this.http.get(url);
+  }
+  // 获取单个设备
+  updateDevice(deviceId,deviceSN,name,createName,address,webAddress,tokenId){
+    const url = this.IP+'/web/updateDevice';
+    let body = 'deviceId='+deviceId+'&deviceSN='+deviceSN+'&name='+name+'&createName='+createName+'&address='+address+'&webAddress='+webAddress+'&tokenId='+tokenId;;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+    return this.http.post(url,body,{headers: headers});
+  }
+  // 修改设备信息
+  deleteDevice(deviceId,tokenId){
+    const url = this.IP+'/web/deleteDevice';
+    let body = 'deviceId='+deviceId+'&tokenId='+tokenId;
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
     return this.http.post(url,body,{headers: headers});

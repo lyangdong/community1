@@ -12,7 +12,8 @@ li a:focus{
 }
 #systemAside{
   background-color: #425069;
-  height: 920px;
+  height: 906px;
+  overflow: hidden;
 }
 #systemAside .nav{
   padding-top: 20px;
