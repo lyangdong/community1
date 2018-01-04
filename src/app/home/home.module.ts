@@ -19,6 +19,7 @@ import { ChildChannelAddComponent } from './child-channel-add/child-channel-add.
 import { ChildChannelModifyComponent } from './child-channel-modify/child-channel-modify.component';
 import {HeaderComponent} from "./header/header.component";
 import { PropagandaStatisticsComponent } from './propaganda-statistics/propaganda-statistics.component';
+import { DeviceComponent } from './device/device.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { PropagandaStatisticsComponent } from './propaganda-statistics/propagand
     ChildChannelModifyComponent,
     HeaderComponent,
     PropagandaStatisticsComponent,
+    DeviceComponent,
   ]
 })
 export class HomeModule { }

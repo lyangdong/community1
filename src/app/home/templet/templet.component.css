@@ -1,5 +1,8 @@
 .Weight{font-weight: normal;color: #777;}
-.edge{border-bottom: 1px solid #ccc;}
+.edge{
+  padding-left: 0!important;
+  border-bottom: 1px solid #ccc;
+}
 /* .side{border-left: 1px solid #ccc;} */
 /* .side2{border-left: 1px solid;padding-bottom:50px;border-color: #ccc;} */
 .side2{padding-bottom:50px;}
@@ -13,6 +16,11 @@
   padding-right: 10px;
   margin-bottom: 15px;
 }
+.templet{
+  min-width: 1280px;
+  margin-left: 15px;
+ overflow-x: hidden;
+}
 .mb{
   margin-top: -10px;
   width: 210px;
@@ -21,7 +29,14 @@
 .test{
   margin-top: 20px;
 }
+.photo-box{
+  width: 218px!important;
+  height:180px!important;
+}
 .Photo{
   width: 218px;
-  height: 213px;
+}
+.img-box{
+  width: 218px!important;
+  height: 140px!important;
 }

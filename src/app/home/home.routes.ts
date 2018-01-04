@@ -12,6 +12,7 @@ import { ContentModifyComponent } from './content-modify/content-modify.componen
 import { ChildChannelAddComponent } from './child-channel-add/child-channel-add.component';
 import { ChildChannelModifyComponent } from './child-channel-modify/child-channel-modify.component';
 import { PropagandaStatisticsComponent } from './propaganda-statistics/propaganda-statistics.component';
+import { DeviceComponent } from './device/device.component';
 
 const HomeRoutes : Routes = <Routes> [
   {
@@ -59,6 +60,10 @@ const HomeRoutes : Routes = <Routes> [
       {
         path : 'content-modify/:id',
         component : ContentModifyComponent
+      },
+      {
+        path : 'device',
+        component : DeviceComponent
       },
     ]
   }
