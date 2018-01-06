@@ -18,8 +18,8 @@ export class DeviceComponent implements OnInit {
   userId:any;
   communityId:any;
   devices:any;
-  addDeviceInfo:any={};
-  updateDeviceInfo:any={};
+  addDeviceInfo:any={deviceSN:'',name:'',address:'',creatorName:'',webAddress:''};
+  updateDeviceInfo:any={deviceSN:'',name:'',address:'',creatorName:'',webAddress:''};
   deviceId:any;
 
 
