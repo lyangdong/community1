@@ -27,7 +27,6 @@ export class ContentModifyComponent implements OnInit {
   //   height:500
   // };
 
-
   userId:any;
   communityId:any;
   tokenId:any;

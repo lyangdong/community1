@@ -26,6 +26,7 @@ export class DeviceComponent implements OnInit {
   constructor(private http: Http, private router: Router, private requestService: RequestService,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
+    console.log(this);
     this.tokenId = sessionStorage.tokenId;
     this.userId = sessionStorage.accountid;
     this.communityId = sessionStorage.communityId;
@@ -118,6 +119,7 @@ export class DeviceComponent implements OnInit {
   };//添加新设备
 
   updateDevice=()=>{
+    this.updateDeviceInfo.webAddress = encodeURIComponent(this.updateDeviceInfo.webAddress);
     this.requestService.updateDevice(
       this.deviceId,
       this.updateDeviceInfo.deviceSN,

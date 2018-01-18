@@ -40,3 +40,12 @@
   width: 218px!important;
   height: 140px!important;
 }
+.col-md-3{
+  padding-bottom: 0;
+}
+.tem-long{
+  height: 470px;
+}
+.tem-long h3{
+  margin-top: 282px;
+}

@@ -180,11 +180,11 @@ export class ChildChannelModifyComponent implements OnInit {
       let str = $('.column-title').eq(i).attr('value');
       columnIds.push(str);
     }
-    if(columnIds.length>1&&parseInt(this.channelDetails.temId)<=4){
+    if(columnIds.length>1&&parseInt(this.channelDetails.temId)<=99){
       layer.msg('当频道关联多个栏目时，请选择多栏目模板');
       return;
     }
-    if(columnIds.length==1&&parseInt(this.channelDetails.temId)>4){
+    if(columnIds.length==1&&parseInt(this.channelDetails.temId)>99){
       layer.msg('当频道关联单个栏目时，请选择单栏目模板');
       return;
     }

@@ -12,7 +12,7 @@
   <!--</div>-->
   <div class="add-from">
     <div class="col-xs-12 add-group">
-      <label class="col-xs-2" for="">频道名称 <span style="color:red">*</span></label>
+      <label class="col-xs-2">频道名称 <span style="color:red">*</span></label>
       <div class="col-xs-6">
         <input [(ngModel)]="channelDetails.name" name="name" type="text" class="form-control" placeholder="10个字以内">
       </div>
@@ -38,35 +38,37 @@
       </div>
     </div>
     <div class="col-xs-12 add-group">
-      <label class="col-xs-2" for="">是否显示 <span style="color:red">*</span></label>
+      <label class="col-xs-2">是否显示 <span style="color:red">*</span></label>
       <div class="col-xs-4 channel-radio">
         <input type="radio" name="show" value="1" id="channelShow" checked><label for="channelShow">显示 </label>
         <input type="radio" name="show" value="0" id="channelFade" ><label for="channelFade">不显示 </label>
       </div>
     </div>
     <div class="col-xs-12 add-group">
-      <label class="col-xs-2" for="">显示顺序 <span style="color:red">*</span></label>
+      <label class="col-xs-2" >显示顺序 <span style="color:red">*</span></label>
       <div class="col-xs-2">
-        <input type="text" [(ngModel)]="channelDetails.order" name="order" class="form-control">
+        <input type="number" [(ngModel)]="channelDetails.order" name="order" class="form-control">
       </div>
     </div>
     <div class="col-xs-12 add-group">
-      <label class="col-xs-2" for="">模板选择 <span style="color:red">*</span></label>
+      <label class="col-xs-2">模板选择 <span style="color:red">*</span></label>
       <div class="col-xs-6">
         <select [(ngModel)]="channelDetails.temId" name="temId" class="form-control">
           <option value="1">单栏目模板一</option>
           <option value="2">单栏目模板二</option>
           <option value="3">单栏目模板三</option>
           <option value="4">单栏目模板四</option>
-          <option value="5">多栏目模板一</option>
-          <option value="6">多栏目模板二</option>
-          <option value="7">多栏目模板三</option>
-          <option value="8">多栏目模板四</option>
-          <option value="9">多栏目模板五</option>
-          <option value="10">多栏目模板六</option>
-          <option value="11">多栏目模板七</option>
-          <option value="12">多栏目模板八</option>
-          <option value="1">多栏目模板九</option>
+          <option value="5">单栏目模板五</option>
+          <option value="100">多栏目模板一</option>
+          <option value="101">多栏目模板二</option>
+          <option value="102">多栏目模板三</option>
+          <option value="103">多栏目模板四</option>
+          <option value="104">多栏目模板五</option>
+          <option value="105">多栏目模板六</option>
+          <option value="106">多栏目模板七</option>
+          <option value="107">多栏目模板八</option>
+          <option value="108">多栏目模板九</option>
+          <option value="109">多栏目模板十</option>
         </select>
       </div>
       <div class="col-xs-6">
