@@ -95,6 +95,7 @@
   width: 420px;
   height: 570px;
   border: 1px lightgrey solid;
+  overflow: scroll;
 }
 .modal-column-add h5{
   padding: 0px 5px 0px;

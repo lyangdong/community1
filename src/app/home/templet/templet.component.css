@@ -31,14 +31,14 @@
 }
 .photo-box{
   width: 218px!important;
-  height:180px!important;
+  height:385px!important;
 }
 .Photo{
   width: 218px;
 }
 .img-box{
   width: 218px!important;
-  height: 140px!important;
+  height: 250px!important;
 }
 .col-md-3{
   padding-bottom: 0;
@@ -46,6 +46,9 @@
 .tem-long{
   height: 470px;
 }
-.tem-long h3{
-  margin-top: 282px;
+/*.tem-long h3{*/
+  /*margin-top: 282px;*/
+/*}*/
+.weight-5{
+  margin-top: 165px!important;
 }

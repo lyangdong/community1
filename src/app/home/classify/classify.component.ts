@@ -239,7 +239,6 @@ export class ClassifyComponent implements OnInit {
           return;
         } else if (res.code == 0) {
           that.logoId = res.data.fid;
-          // console.log(that.logoId)
         } else if (res.code == 1009) {
           layer.msg('文件太大')
         } else if (res.code == 1010) {
@@ -262,13 +261,15 @@ export class ClassifyComponent implements OnInit {
         $('#loading_con').fadeOut();
         layer.msg(res.json().text);return;
       }else {
+        // console.log(res.json().target);
         this.childInfo = res.json().target;
+        // this.childInfo.logo_url = res.json().target.logo_url;
         $('#loading_con').fadeOut();
-        // console.log(res.json());
+        // console.log(this.childInfo.name);
       }
     },erro =>{
       $('#loading_con').fadeOut();
-      layer.msg('获取网络信息失败，请检查网络');
+      // layer.msg('获取网络信息失败，请检查网络');
     })
   }; //获取分类信息
 
@@ -280,7 +281,6 @@ export class ClassifyComponent implements OnInit {
         layer.msg(res.json().text);return;
       }else {
         this.categorysModify = res.json().target;
-        // console.log(this.categorysModify);
         this.p_idModify = res.json().target.p_id;
         this.logoId = res.json().target.logo_id;
         this.updateRef = res.json().target.url;
@@ -321,6 +321,9 @@ export class ClassifyComponent implements OnInit {
         this.getTreeData();
         // console.log(this.parentId)
         this.getParentCategorys(this.parentId);
+        if(this.parentId!=-1){
+          this.getCategorysDeatil(this.parentId);
+        }
       }
     },erro =>{
       layer.msg('获取网络信息失败，请检查网络');
@@ -334,6 +337,7 @@ export class ClassifyComponent implements OnInit {
         layer.msg(res.json().text);return;
       }else {
         // console.log(res.json());
+        // console.log(res.json());
         this.parentCategorys = res.json().target;
         // this.parentId = res.json().target.p_id;
         // console.log(this.parentId);
@@ -343,12 +347,13 @@ export class ClassifyComponent implements OnInit {
         }
         if(this.number==0){
           this.getParentCategorys(this.pid);
+          this.getCategorysDeatil(this.pid);
           this.number = 1;
           // console.log("检测")
         }//只执行一次
       }
     },erro =>{
-      layer.msg('获取网络信息失败，请检查网络');
+      // layer.msg('获取网络信息失败，请检查网络');
     })
   };//获取分类列表
 
@@ -362,8 +367,9 @@ export class ClassifyComponent implements OnInit {
           layer.msg(res.json().text);return;
         }else {
           // console.log(this.pid);
-          that.getParentCategorys(this.pid);
-          that.getCategorysDeatil(this.pid);
+          that.number = 0;
+          that.getParentCategorys(-1);
+          // that.getCategorysDeatil(that.parentId);
           that.getTreeData();
           layer.msg('删除成功')
           // console.log(res.json());

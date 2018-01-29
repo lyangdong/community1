@@ -13,13 +13,23 @@
           <div class="tree-node btn btn-success" (click)="fadeout()">
             {{updateContents.name}}
           </div>
-          <ul id="treeDemo" class="ztree"></ul>
+          <ul id="treeDemo" class="ztree">
+          </ul>
         </div>
       </div>
       <div class="col-xs-12 add-group">
         <label class="col-xs-2 " for="">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</label>
         <div class="col-xs-5">
           <input [(ngModel)]="updateContents.title" name="title"  class="form-control col-xs-3" type="text" placeholder="五个字以内">
+        </div>
+      </div>
+      <div class="col-xs-12 add-group">
+        <label class="col-xs-2 ">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态</label>
+        <div class="col-xs-5">
+          <label class="checkSingel bespeak on" for="bespeak">预约</label>
+          <label class="checkSingel unbespeak" for="unbespeak">发表</label>
+          <input style="display: none"  type="radio" name="state" value="1"  id="bespeak" checked="checked">
+          <input style="display: none"  type="radio" name="state" value="0" id="unbespeak">
         </div>
       </div>
       <div class="col-xs-12 add-group img-group">
@@ -58,12 +68,12 @@
           <div id="editCon" name="content"></div>
         </div>
       </div>
-      <div class="col-xs-12 add-group">
-        <label class="col-xs-2 " for="">顺&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序</label>
-        <div class="col-xs-8">
-          <input type="text"  [(ngModel)]="updateContents.order" name="order"  class="form-control col-xs-3" type="text" >
-        </div>
-      </div>
+      <!--<div class="col-xs-12 add-group">-->
+        <!--<label class="col-xs-2 " for="">顺&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序</label>-->
+        <!--<div class="col-xs-8">-->
+          <!--<input type="text"  [(ngModel)]="updateContents.order" name="order"  class="form-control col-xs-3">-->
+        <!--</div>-->
+      <!--</div>-->
       <div class="col-xs-12 add-group">
         <label class="col-xs-2 " for="">外部链接</label>
         <div class="col-xs-6">

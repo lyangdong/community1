@@ -67,8 +67,28 @@
   background-color: white;
   padding: 5px 10px;
   display: none;
+  z-index: 10000!important;
 }
 .tree-node{
   padding: 6px 30px;
   width: 120px;
+}
+.content-push{
+  margin-top: 16px!important;
+}
+.column-add-form{
+  position: relative;
+  height: 200px;
+  width: 200px;
+  display: block;
+}
+#treeDemoCheck{
+  width: 240px;
+  height: 300px;
+}
+.modal-body{
+  height: 720px;
+}
+.modal-body .ztree{
+  display: block!important;
 }

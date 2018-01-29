@@ -46,11 +46,54 @@
               </div>
             </a>
             <div class="content-list-box-footer">
-              <div><a class="col-xs-6 text-center border-right-1 glyphicon glyphicon-pencil" href="" routerLink="/home/content-modify/{{content.id}}"></a></div>
-              <div><a class="col-xs-6 text-center glyphicon glyphicon-trash" href="javascript:void (0)" [attr.value]="content.id" (click)="deleteCatContent($event)" ></a></div>
+              <div><a class="col-xs-4 text-center border-right-1 glyphicon glyphicon-pencil" href="" routerLink="/home/content-modify/{{content.id}}"></a></div>
+              <div><a class="col-xs-4 text-center border-right-1 glyphicon glyphicon-trash" href="javascript:void (0)" [attr.value]="content.id" (click)="deleteCatContent($event)" ></a></div>
+              <div><a class="col-xs-4 text-center content-push" [attr.value]="content.id" (click)="pushContent($event)" data-toggle="modal" data-target="#relationColumn">推送</a></div>
             </div>
           </div>
         </li>
       </ul>
+  </div>
+  <!--推送-->
+  <div class="modal fade" id="relationColumn" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;
+          </button>
+          <h4 class="modal-title">
+            推送
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="modal-column-add">
+            <div class="column-add-left left">
+              <h5>栏目列表</h5>
+              <div class="column-add-form column-all">
+                <ul id="treeDemoCheck" class="ztree"></ul>
+              </div>
+            </div>
+            <div class="column-add-right right">
+              <h5>已经选择的栏目</h5>
+              <div class="column-add-form column-select">
+                <ul>
+                  <li *ngFor="let info of treeCheckedInfos" class="column-add-box">
+                    <a class="glyphicon glyphicon-th-list" href="javascript:void(0)" [attr.value]="info.id"> {{info.name}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-close" data-dismiss="modal">关闭
+          </button>
+          <button type="button" class="btn btn-primary" (click)="sure()">
+            确定
+          </button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
   </div>
 </div>

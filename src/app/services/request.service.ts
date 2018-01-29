@@ -79,14 +79,14 @@ export class RequestService {
   // 编辑文章
 
   deletePublish(publishId,tokenId) {
-    const url = this.IP + '/web/deltePublish?publishId=' + publishId+'&tokenId='+tokenId;;
+    const url = this.IP + '/web/deltePublish?publishId=' + publishId+'&tokenId='+tokenId;
     return this.http.get(url);
   }//删除文章
 
 
   addGoverDealClass(name,communityId,tokenId){
     const url = this.IP+'/web/addMatter';
-    let body='name='+name+'&communityId='+communityId+'&tokenId='+tokenId;;
+    let body='name='+name+'&communityId='+communityId+'&tokenId='+tokenId;
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
     return this.http.post(url,body,{headers: headers});
@@ -94,7 +94,7 @@ export class RequestService {
   // 添加分类(政务办理)
 
   getGoverDealClass(communityId,tokenId){
-    const url = this.IP+'/web/getMatter?communityId='+communityId+'&tokenId='+tokenId;;
+    const url = this.IP+'/web/getMatter?communityId='+communityId+'&tokenId='+tokenId;
     return this.http.get(url);
   }
   // 获取分类(政务办理)
@@ -125,7 +125,7 @@ export class RequestService {
 
   updateStatus(populationInformationId,status,tokenId){
     const url = this.IP+'/web/updateStatus';
-    let body = 'populationInformationId='+populationInformationId+'&status='+status+'&tokenId='+tokenId;;
+    let body = 'populationInformationId='+populationInformationId+'&status='+status+'&tokenId='+tokenId;
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
     return this.http.post(url,body,{headers: headers});
@@ -143,7 +143,7 @@ export class RequestService {
   // 删除待办事项(POST)
 
   getParentClassification(tokenId){
-    const url = this.IP+'/web/getParentClassification?tokenId='+tokenId;;
+    const url = this.IP+'/web/getParentClassification?tokenId='+tokenId;
     return this.http.get(url);
   }
   // 获取右侧主菜单
@@ -229,114 +229,6 @@ export class RequestService {
     return this.http.get(url);
   }
 
-  getSimpleManager(accountid,tokenId) {
-    const url = this.IP + '/web/getSimpleManager?accountid=' +accountid+'&tokenId='+tokenId;
-    return this.http.get(url);
-  }//查看单个社区管理员
-
-  updateManager(communityId,accountid,accountNo,password,alias,sex,tokenId) {
-    const url = this.IP + '/web/updateManager';
-    let body = 'communityId=' +communityId+'&accountid=' +accountid+'&accountNo=' +accountNo+'&alias='+alias+'&password='+password +'&sex='+sex+'&tokenId='+tokenId;;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
-    return this.http.post(url,body,{headers: headers});
-  }//修改单个社区管理员(POST)
-
-  deleteManager(communityId,accountNo,password,alias,sex,tokenId) {
-    const url = this.IP + '/web/deleteManager';
-    let body = 'communityId=' +communityId+'accountNo=' +accountNo+'&alias='+alias+'&password='+password +'&sex='+sex+'&tokenId='+tokenId;;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
-    return this.http.post(url,body,{headers: headers});
-  }//修改单个社区管理员(POST)
-
-
-
-
-
-
-  getContent(communityId,tokenId){
-    const url = this.IP+'/web/getContent?communityId='+communityId+'&tokenId='+tokenId;;
-    return this.http.get(url);
-  }
-  // 获取电子屏内容
-
-  getSimpleElectronicScreen(contentId,tokenId){
-    const url = this.IP+'/web/getSimpleElectronicScreen?contentId='+contentId+'&tokenId='+tokenId;;
-    return this.http.get(url);
-  }
-  // 获取单个电子屏内容
-
-
-  addContent(name,picId,introduce,pid,businessId,templateId,communityId,classificationName,tokenId){
-    const url = this.IP + '/web/addContent';
-    let body = 'name=' +name+'&picId='+picId+'&introduce='+introduce+'&pid='+pid+'&businessId='+businessId+'&templateId='+templateId+'&communityId='+communityId+'&classificationName='+classificationName+'&tokenId='+tokenId;;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
-    return this.http.post(url,body,{headers: headers});
-  }
-  // 新增电子屏内容管理
-
-  addVideo(communityId,videoId,tokenId){
-    const url = this.IP+'/web/addVideo';
-    let body = 'communityId='+communityId+'&videoId='+videoId+'&tokenId='+tokenId;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
-    return this.http.post(url,body,{headers: headers});
-  }
-  // 添加视频(POST)
-
-  getVideo(communityId,tokenId){
-    const url = this.IP+'/web/getVideo?communityId='+communityId+'&tokenId='+tokenId;;
-    return this.http.get(url);
-  }
-  // 获取视频信息
-
-  deleteVideo(videoId,tokenId){
-    const url = this.IP+'/web/deleteVideo';
-    let body = 'videoId='+videoId+'&tokenId='+tokenId;;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
-    return this.http.post(url,body,{headers: headers});
-  }
-  // 删除视频(POST)
-
-  deleteContent(contentId,tokenId){
-    const url = this.IP+'/web/deleteContent';
-    let body = 'contentId='+contentId+'&tokenId='+tokenId;;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
-    return this.http.post(url,body,{headers: headers});
-  }
-  // 删除电子屏内容(POST)
-
-  updateContent(contentId,name,picId,businessId,pid,introduce,templateId,classificationName,tokenId){
-    const url = this.IP+'/web/updateContent';
-    let body = 'contentId='+contentId+'&name='+name+'&picId='+picId+'&businessId='+businessId+'&pid='+pid+'&introduce='+introduce+'&templateId='+templateId+'&classificationName='+classificationName+'&tokenId='+tokenId;;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
-    return this.http.post(url,body,{headers: headers});
-  }
-  // 修改电子屏内容(POST)
-
-  getAllDevice(communityId,page,tokenId){
-    const url = this.IP+'/web/getAllDevice?communityId='+communityId+'&page='+page+'&tokenId='+tokenId;;
-    return this.http.get(url);
-  }
-  // 获取所有设备
-
-
-  // addDevice(communityId,deviceSN,name,address,creatorName,tokenId){
-  //   const url = this.IP+'/web/addDevice';
-  //   let body = 'communityId='+communityId+'&deviceSN='+deviceSN+'&name='+name+'&address='+address+'&creatorName='+creatorName+'&tokenId='+tokenId;;
-  //   let headers = new Headers();
-  //   headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
-  //   return this.http.post(url,body,{headers: headers});
-  // }
-  // 添加设备(POST)
-
-
-
   uploadImg(file ){//获取access_token
     const url = this.IP+'/upload.do';
     let body = 'file='+file;
@@ -403,7 +295,7 @@ export class RequestService {
   // 获取地域
 
   getWebAddress(communityId,tokenId){
-    const url = this.IP+'/web/getWebAddress?communityId='+communityId+'&tokenId='+tokenId;;
+    const url = this.IP+'/web/getWebAddress?communityId='+communityId+'&tokenId='+tokenId;
     return this.http.get(url);
   }
   // 后台获取公众号配置地址
@@ -528,10 +420,10 @@ export class RequestService {
   }
   //获取分类下内容
 
-  addCatContent(communityId,businessId,title,coverId,abstractTxt,content,refUrl,isTop,isActive,order,businessType,userId,flag){
+  addCatContent(communityId,businessId,title,coverId,abstractTxt,content,state,refUrl,isTop,isActive,order,businessType,userId,flag){
     const url = this.IP+'/api/catcontents';
     let body ='communityId='+communityId+'&businessId='+businessId+ '&title='+title+'&coverId='+coverId+ '&abstractTxt='+abstractTxt
-      + '&content='+content+ '&refUrl='+refUrl+ '&isTop='+isTop + '&isActive='+isActive+ '&order='+order+ '&businessType='+businessType+'&userId='+userId+'&flag='+flag;
+      + '&content='+content+ '&state='+state+ '&refUrl='+refUrl+ '&isTop='+isTop + '&isActive='+isActive+ '&order='+order+ '&businessType='+businessType+'&userId='+userId+'&flag='+flag;
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
     return this.http.post(url,body,{headers: headers});
@@ -542,10 +434,10 @@ export class RequestService {
     return this.http.get(url)
   }
   //获取文章详情
-  updatecatcontent(id,title,coverId,abstractTxt,content,refUrl,isTop,isActive,order,businessId,flag){
+  updatecatcontent(id,title,coverId,abstractTxt,content,refUrl,isTop,isActive,order,businessId,flag,state){
     const url = this.IP+'/api/catcontent/update';
     let body ='id='+id+'&title='+title+ '&coverId='+coverId+'&abstractTxt='+abstractTxt+ '&content='+content+
-    '&refUrl='+refUrl+ '&isTop='+isTop + '&isActive='+isActive+ '&order='+order+'&businessId='+businessId+'&flag='+flag;
+    '&refUrl='+refUrl+ '&isTop='+isTop + '&isActive='+isActive+ '&order='+order+'&businessId='+businessId+'&flag='+flag+'&state='+state;
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
     return this.http.post(url,body,{headers: headers});
@@ -680,4 +572,108 @@ export class RequestService {
     headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
     return this.http.post(url,body,{headers: headers});
   }
+  //删除设备
+  pushContent(modularIds,contentId){
+    const url = this.IP+'/api/pushContent';
+    let body = 'modularIds='+modularIds+'&contentId='+contentId;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+    return this.http.post(url,body,{headers: headers});
+  }
+
+
+
+
+
+  // getSimpleManager(accountid,tokenId) {
+  //   const url = this.IP + '/web/getSimpleManager?accountid=' +accountid+'&tokenId='+tokenId;
+  //   return this.http.get(url);
+  // }
+  // //查看单个社区管理员
+  // updateManager(communityId,accountid,accountNo,password,alias,sex,tokenId) {
+  //   const url = this.IP + '/web/updateManager';
+  //   let body = 'communityId=' +communityId+'&accountid=' +accountid+'&accountNo=' +accountNo+'&alias='+alias+'&password='+password +'&sex='+sex+'&tokenId='+tokenId;;
+  //   let headers = new Headers();
+  //   headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+  //   return this.http.post(url,body,{headers: headers});
+  // }
+  // //修改单个社区管理员(POST)
+  // deleteManager(communityId,accountNo,password,alias,sex,tokenId) {
+  //   const url = this.IP + '/web/deleteManager';
+  //   let body = 'communityId=' +communityId+'accountNo=' +accountNo+'&alias='+alias+'&password='+password +'&sex='+sex+'&tokenId='+tokenId;;
+  //   let headers = new Headers();
+  //   headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+  //   return this.http.post(url,body,{headers: headers});
+  // }
+  // //修改单个社区管理员(POST)
+  // getContent(communityId,tokenId){
+  //   const url = this.IP+'/web/getContent?communityId='+communityId+'&tokenId='+tokenId;;
+  //   return this.http.get(url);
+  // }
+  // // 获取电子屏内容
+  // getSimpleElectronicScreen(contentId,tokenId){
+  //   const url = this.IP+'/web/getSimpleElectronicScreen?contentId='+contentId+'&tokenId='+tokenId;;
+  //   return this.http.get(url);
+  // }
+  // // 获取单个电子屏内容
+  // addContent(name,picId,introduce,pid,businessId,templateId,communityId,classificationName,tokenId){
+  //   const url = this.IP + '/web/addContent';
+  //   let body = 'name=' +name+'&picId='+picId+'&introduce='+introduce+'&pid='+pid+'&businessId='+businessId+'&templateId='+templateId+'&communityId='+communityId+'&classificationName='+classificationName+'&tokenId='+tokenId;;
+  //   let headers = new Headers();
+  //   headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+  //   return this.http.post(url,body,{headers: headers});
+  // }
+  // // 新增电子屏内容管理
+  // addVideo(communityId,videoId,tokenId){
+  //   const url = this.IP+'/web/addVideo';
+  //   let body = 'communityId='+communityId+'&videoId='+videoId+'&tokenId='+tokenId;
+  //   let headers = new Headers();
+  //   headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+  //   return this.http.post(url,body,{headers: headers});
+  // }
+  // // 添加视频(POST)
+  // getVideo(communityId,tokenId){
+  //   const url = this.IP+'/web/getVideo?communityId='+communityId+'&tokenId='+tokenId;;
+  //   return this.http.get(url);
+  // }
+  // // 获取视频信息
+  // deleteVideo(videoId,tokenId){
+  //   const url = this.IP+'/web/deleteVideo';
+  //   let body = 'videoId='+videoId+'&tokenId='+tokenId;;
+  //   let headers = new Headers();
+  //   headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+  //   return this.http.post(url,body,{headers: headers});
+  // }
+  // // 删除视频(POST)
+  // deleteContent(contentId,tokenId){
+  //   const url = this.IP+'/web/deleteContent';
+  //   let body = 'contentId='+contentId+'&tokenId='+tokenId;;
+  //   let headers = new Headers();
+  //   headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+  //   return this.http.post(url,body,{headers: headers});
+  // }
+  // // 删除电子屏内容(POST)
+  // updateContent(contentId,name,picId,businessId,pid,introduce,templateId,classificationName,tokenId){
+  //   const url = this.IP+'/web/updateContent';
+  //   let body = 'contentId='+contentId+'&name='+name+'&picId='+picId+'&businessId='+businessId+'&pid='+pid+'&introduce='+introduce+'&templateId='+templateId+'&classificationName='+classificationName+'&tokenId='+tokenId;;
+  //   let headers = new Headers();
+  //   headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+  //   return this.http.post(url,body,{headers: headers});
+  // }
+  // // 修改电子屏内容(POST)
+  // getAllDevice(communityId,page,tokenId){
+  //   const url = this.IP+'/web/getAllDevice?communityId='+communityId+'&page='+page+'&tokenId='+tokenId;;
+  //   return this.http.get(url);
+  // }
+  // // 获取所有设备
+  // // addDevice(communityId,deviceSN,name,address,creatorName,tokenId){
+  // //   const url = this.IP+'/web/addDevice';
+  // //   let body = 'communityId='+communityId+'&deviceSN='+deviceSN+'&name='+name+'&address='+address+'&creatorName='+creatorName+'&tokenId='+tokenId;;
+  // //   let headers = new Headers();
+  // //   headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+  // //   return this.http.post(url,body,{headers: headers});
+  // // }
+  // // 添加设备(POST)
+
+
 }

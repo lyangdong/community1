@@ -43,6 +43,7 @@ export class ContentModifyComponent implements OnInit {
               private activatedRoute: ActivatedRoute,private _renderer2 :Renderer2,@Inject(DOCUMENT) private _document) { }
 
   ngOnInit() {
+    $('#loading_con').fadeOut();
     $('.cke_button_icon').click(function () {
         // console.log(1)
     });
@@ -50,6 +51,8 @@ export class ContentModifyComponent implements OnInit {
     this.isStart();
     this.getUrl();
     this.getContentDetails();
+    this.stateChoose();
+
     this.userId= sessionStorage.accountid;
     this.communityId= sessionStorage.communityId;
     this.tokenId = sessionStorage.tokenId;
@@ -75,7 +78,6 @@ export class ContentModifyComponent implements OnInit {
 
     this.requestService.getCategorys(this.communityId,-1).subscribe(res=>{
       if(res.json().code!=0){
-        // layer.msg('账号或密码错误');
         layer.msg(res.json().text);return;
       }else {
         // console.log(res.json());
@@ -181,8 +183,15 @@ export class ContentModifyComponent implements OnInit {
         layer.msg(res.json().text);return;
       }else {
         this.updateContents = res.json().target;
-        // console.log(res.json());
-        this.updateContents.abstractTxt =res.json().target.abstract_txt;
+        console.log(res.json());
+        console.log(this.updateContents.state);
+        if(this.updateContents.state ==1){
+          // $('#unbespeak').css('checked','checked');
+          $('.bespeak').click()
+        }else {
+          $('.unbespeak').click()
+        }
+        this.updateContents.abstract_txt =res.json().target.abstract_txt;
         this.updateContents.coverId =res.json().target.cover_id;
         this.updateContents.businessId = res.json().target.business_id;
         // this.ckeditorContent = res.json().target.content;
@@ -208,18 +217,35 @@ export class ContentModifyComponent implements OnInit {
   updatecatcontent=()=> {
     let content = editor2.txt.html();
     content= encodeURIComponent(content);
+    let state = $('input[name="state"]:checked').val();
+    if(!this.updateContents.title){
+      layer.msg('请输入内容标题');return
+    }else if(!this.updateContents.coverId){
+      layer.msg('请选择封面图片');return
+    }else if(!this.updateContents.businessId){
+      layer.msg('请选择所属分类');return
+    }else if(!this.updateContents.abstract_txt && this.updateContents.flag==0){
+      layer.msg('请输入文章摘要');return
+    }else if(!content && this.updateContents.flag==0){
+      layer.msg('请输入正文内容');return
+    }else if(!this.updateContents.order){
+      layer.msg('请选择顺序');return
+    }else if(!this.updateContents.link && this.updateContents.flag==1){
+      layer.msg('请输入链接');return
+    }
     this.requestService.updatecatcontent(
       this.pid,
       this.updateContents.title,
       this.updateContents.coverId,
-      this.updateContents.abstractTxt,
+      this.updateContents.abstract_txt,
       content,
       this.updateContents.ref_url,
       this.updateContents.isTop,
       this.updateContents.isActive,
       this.updateContents.order,
       this.updateContents.businessId,
-      this.updateContents.flag
+      this.updateContents.flag,
+      state
     ).subscribe(res => {
       if (res.json().code != 0) {
         // layer.msg('账号或密码错误');
@@ -240,6 +266,13 @@ export class ContentModifyComponent implements OnInit {
     });
   };
 
+  stateChoose=()=>{
+    $('.checkSingel').click(function () {
+      $('.checkSingel').removeClass('on');
+      $(this).addClass('on');
+    })
+  };
+
   isStart=()=>{
     let that =this;
     $('input[type="radio"]').change(function () {
@@ -253,11 +286,12 @@ export class ContentModifyComponent implements OnInit {
         that.updateContents.flag= 1
       }
     });
-    let isStart =  $('input[type="radio"]:checked').attr('name');
+    // let isStart =  $('input[type="radio"]:checked').attr('name');
     // console.log(isStart);
   };
   fadeout(){
-    $('.ztree').toggle()
+    $('.ztree').toggle();
+    $('.ztree').css('z-index','100000')
   };
   sort2(all) {
     var arr = [];

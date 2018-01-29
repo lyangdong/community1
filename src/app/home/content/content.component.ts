@@ -17,11 +17,19 @@ export class ContentComponent implements OnInit {
   tokenId:any;
   parentName:any;
   treeData:any;
+  treeDataCheck:any
   classifyName:any="选择分类";
   allId:any=1;
   title:any;
   id:any;
   isTop:any;
+  zNodesCheck:any;
+  settingCheck:any;
+
+  treeCheckedInfos:any=[];
+  columnIds:any='';
+  columnInfos:any=[];
+  contentId:any;
 
   catcontents:any=[];
 
@@ -77,6 +85,74 @@ export class ContentComponent implements OnInit {
     $(document).ready(function () {
       $.fn.zTree.init($("#treeDemo"), setting, zNodes);
     });//初始化
+
+
+    var settingCheck = {
+      check: {
+        enable: true
+      },
+      data: {
+        simpleData: {
+          enable: true
+        }
+      },
+      callback : {
+        onCheck : function(evt,treeId,treeNode){
+          var treeObjCheck = $.fn.zTree.getZTreeObj("treeDemoCheck");
+          var nodesCheck = treeObjCheck.getCheckedNodes(true);
+          that.treeCheckedInfos = nodesCheck;
+          // console.log(that.treeCheckedInfos)
+        }
+      }
+    };
+    var code;
+
+    this.requestService.getCategorys(this.communityId,-1).subscribe(res=>{
+      if(res.json().code!=0){
+        // layer.msg('账号或密码错误');
+        layer.msg(res.json().text);return;
+      }else {
+        // console.log(res.json());
+        // this.treeDataCheck = this.sort2Check(res.json().target);
+        this.zNodesCheck =this.sort2Check(res.json().target);
+        this.settingCheck = settingCheck;
+
+        console.log(this.zNodesCheck);
+        $.fn.zTree.init($("#treeDemoCheck"),  this.settingCheck, this.zNodesCheck);
+        setCheck();
+        $("#py").bind("change", setCheck);
+        $("#sy").bind("change", setCheck);
+        $("#pn").bind("change", setCheck);
+        $("#sn").bind("change", setCheck);
+      }
+    },erro =>{
+      layer.msg('获取网络信息失败，请检查网络');
+    });
+    function setCheck() {
+      var zTree = $.fn.zTree.getZTreeObj("treeDemoCheck"),
+        py = $("#py").attr("checked") ? "p" : "",
+        sy = $("#sy").attr("checked") ? "s" : "",
+        pn = $("#pn").attr("checked") ? "p" : "",
+        sn = $("#sn").attr("checked") ? "s" : "",
+        type = { "Y" : "s", "N" : "s" };
+      zTree.setting.check.chkboxType = type;
+      showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
+    }
+
+    function showCode(str) {
+      if (!code) code = $("#code");
+      code.empty();
+      code.append("<li>" + str + "</li>");
+    }
+
+    $(document).ready(function () {
+      $.fn.zTree.init($("#treeDemoCheck"), this.settingCheck, this.zNodesCheck);
+      setCheck();
+      $("#py").bind("change", setCheck);
+      $("#sy").bind("change", setCheck);
+      $("#pn").bind("change", setCheck);
+      $("#sn").bind("change", setCheck);
+    });
   }
 
 
@@ -182,6 +258,11 @@ export class ContentComponent implements OnInit {
       layer.msg('获取网络信息失败，请检查网络');
     });
   };
+  pushContent=(event)=>{
+    // console.log($(event.target).attr('value'))
+    this.contentId = $(event.target).attr('value')
+  };推送
+
   cancelStickPost=(event)=> {
     let id =$(event.target).attr('value');
     this.requestService.updatecatcontentTop(id,0).subscribe(res => {
@@ -201,6 +282,33 @@ export class ContentComponent implements OnInit {
       layer.msg('获取网络信息失败，请检查网络');
     });
   };
+
+
+
+  sure=()=>{
+    let columnIds = [];
+    for(let i=0 ;i<$('.column-add-box a').length;i++){
+      let str = $('.column-add-box a').eq(i).attr('value');
+      columnIds.push(str);
+    }//获取栏目数组
+    this.columnIds = columnIds.toString();
+    this.requestService.pushContent(this.columnIds,this.contentId).subscribe(res=>{
+      if (res.json().code != 0) {
+        // layer.msg('账号或密码错误');
+        layer.msg(res.json().text);
+        return;
+      } else {
+        layer.msg('推送成功');
+      }
+    }, erro => {
+      if (erro.type == 3) {
+        // this.router.navigate(['/login']);
+        return;
+      }
+      layer.msg('获取网络信息失败，请检查网络');
+    });
+    $('.btn-close').click();
+  };// 传递栏目值
 
   fadeout(){
     $('.ztree').toggle()
@@ -228,6 +336,32 @@ export class ContentComponent implements OnInit {
       }
     }
   };
+
+  sort2Check(all) {
+    var arr = [];
+    var parentId = -1;
+    for(var i=0;i < all.length;i++){
+      if(parentId == all[i].p_id){
+
+        const node = {name: all[i].name, pId: 0, id: all[i].id,open:true};
+        const children = all[i].items;
+        arr.push(node);
+        this.sortNode2Check(node.id, children, arr);
+      }
+    }
+    return arr;
+  }
+  sortNode2Check(pid, children, arr){
+    for(var i=0;i<children.length;i++){
+      if(pid == children[i].p_id){
+        const node = {name: children[i].name,pId: pid, id: children[i].id};
+        const children2 = children[i].items;
+        arr.push(node);
+        this.sortNode2Check(node.id, children2, arr);
+      }
+    }
+  }
+
   getDateTen=(time)=>{
     return time.substr(0,10);
   }

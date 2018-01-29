@@ -34,7 +34,9 @@ export class AddContentComponent implements OnInit {
 
   constructor(private http: Http, private router: Router, private requestService: RequestService) { }
   ngOnInit() {
+    $('#loading_con').fadeOut();
     this.isStart();
+    this.stateChoose();
     let that= this;
     this.userId= sessionStorage.accountid;
     this.communityId= sessionStorage.communityId;
@@ -143,14 +145,15 @@ export class AddContentComponent implements OnInit {
   addCatContent=()=>{
     let content = editor2.txt.html();
     content= encodeURIComponent(content);
+    let state = $('input[name="state"]:checked').val();
     if(!this.catcontents.title){
       layer.msg('请输入内容标题');return
     }else if(!this.catcontents.coverId){
       layer.msg('请选择封面图片');return
     }else if(!this.catcontents.businessId){
       layer.msg('请选择所属分类');return
-    }else if(!this.catcontents.abstractTxt){
-      layer.msg('请输入文章描述');return
+    }else if(!this.catcontents.abstractTxt && this.flag==0){
+      layer.msg('请输入文章摘要');return
     }else if(!content && this.flag==0){
       layer.msg('请输入正文内容');return
     }else if(!this.catcontents.order){
@@ -166,6 +169,7 @@ export class AddContentComponent implements OnInit {
       this.catcontents.coverId,
       this.catcontents.abstractTxt,
       content,
+      state,
       this.catcontents.link,
       this.catcontents.isTop,
       this.catcontents.isActive,
@@ -210,7 +214,14 @@ export class AddContentComponent implements OnInit {
 
 
   fadeout(){
-    $('.ztree').toggle()
+    $('.ztree').toggle();
+    $('.ztree').css('z-index','100000')
+  };
+  stateChoose=()=>{
+    $('.checkSingel').click(function () {
+      $('.checkSingel').removeClass('on');
+      $(this).addClass('on');
+    })
   };
   sort2(all) {
     var arr = [];
