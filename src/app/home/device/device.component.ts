@@ -26,7 +26,6 @@ export class DeviceComponent implements OnInit {
   constructor(private http: Http, private router: Router, private requestService: RequestService,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(this);
     this.tokenId = sessionStorage.tokenId;
     this.userId = sessionStorage.accountid;
     this.communityId = sessionStorage.communityId;
@@ -39,9 +38,10 @@ export class DeviceComponent implements OnInit {
       if(res.json().code!=0) {
         // layer.msg('账号或密码错误');
         layer.msg(res.json().text);
+        $('#loading_con').fadeOut();
         return;
       }else {
-        console.log(res.json());
+        $('#loading_con').fadeOut();
         this.devices = res.json().target.devices;
         if(page==1){
           $('#pagination-details').empty();
@@ -68,6 +68,7 @@ export class DeviceComponent implements OnInit {
         layer.msg('登录超时，请重新登录');return;
       }
       layer.msg('获取网络信息失败，请检查网络');
+      $('#loading_con').fadeOut();
       })
   };
   getDeviceDetails=(event)=>{
@@ -78,7 +79,7 @@ export class DeviceComponent implements OnInit {
         layer.msg(res.json().text);
         return;
       }else {
-        console.log(res.json());
+        // console.log(res.json());
         this.updateDeviceInfo = res.json().target;
       }
     },erro=>{

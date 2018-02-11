@@ -264,7 +264,7 @@ export class CityComponent implements OnInit {
       },erro =>{
         if(erro.type==3){
           layer.msg('登录超时，请重新登录');
-          this.router.navigate(['/login']); return;
+          that.router.navigate(['/login']); return;
         }
         layer.msg('获取网络信息失败，请检查网络');
       });

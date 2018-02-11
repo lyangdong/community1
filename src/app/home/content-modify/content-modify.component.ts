@@ -115,6 +115,10 @@ export class ContentModifyComponent implements OnInit {
     script1.type = 'text/javascript-lazy';
     script1.src = "assets/js/wangEditor.min.js";
     $('body').append(script1);
+    let script3 = document.createElement('script');
+    script3.type = 'text/javascript-lazy';
+    script3.src = "assets/js/wangEditor-fullscreen-plugin.js";
+    $('body').append(script3);
 
     let script2 = document.createElement('script');
     script2.type = 'text/javascript-lazy';

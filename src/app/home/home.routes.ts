@@ -13,6 +13,8 @@ import { ChildChannelAddComponent } from './child-channel-add/child-channel-add.
 import { ChildChannelModifyComponent } from './child-channel-modify/child-channel-modify.component';
 import { PropagandaStatisticsComponent } from './propaganda-statistics/propaganda-statistics.component';
 import { DeviceComponent } from './device/device.component';
+import { BespeakComponent } from './bespeak/bespeak.component';
+import { CommentComponent } from './comment/comment.component';
 
 const HomeRoutes : Routes = <Routes> [
   {
@@ -60,6 +62,13 @@ const HomeRoutes : Routes = <Routes> [
       {
         path : 'content-modify/:id',
         component : ContentModifyComponent
+      }, {
+        path : 'bespeak',
+        component : BespeakComponent
+      },
+      {
+        path : 'comment',
+        component : CommentComponent
       },
       {
         path : 'device',

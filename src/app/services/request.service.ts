@@ -210,7 +210,6 @@ export class RequestService {
     return this.http.post(url,body,{headers: headers});
   }//修改小区成员信息(POST)
 
-
   addManager(communityId,accountNo,password,alias,sex,tokenId) {
     const url = this.IP + '/web/addManager';
     let body = 'communityId=' +communityId+'&accountNo=' +accountNo+'&alias='+alias+'&password='+password +'&sex='+sex+'&tokenId='+tokenId;;
@@ -581,6 +580,41 @@ export class RequestService {
     return this.http.post(url,body,{headers: headers});
   }
 
+  getReserve(communityId,tokenId,type,pn){
+    const url = this.IP+'/web/getReserve?communityId='+communityId+'&type='+type+'&pn='+pn+'&tokenId='+tokenId;
+    return this.http.get(url);
+  }
+
+  updateReserve(tokenId,type,id){
+    const url = this.IP+'/web/updateReserve';
+    let body = 'tokenId='+tokenId+'&type='+type+'&id='+id;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+    return this.http.post(url,body,{headers: headers});
+  }
+  deleteReserve(tokenId,id){
+    const url = this.IP+'/web/deleteReserve';
+    let body = 'tokenId='+tokenId+'&id='+id;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+    return this.http.post(url,body,{headers: headers});
+  }
+
+  getComment(communityId,pn){
+    const url = this.IP+'/api/getComment';
+    let body = 'communityId='+communityId+'&pn='+pn;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+    return this.http.post(url,body,{headers: headers});
+  }
+
+  deleteComment(commentId){
+    const url = this.IP+'/api/deleteComment';
+    let body = 'commentId='+commentId;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+    return this.http.post(url,body,{headers: headers});
+  }
 
 
 

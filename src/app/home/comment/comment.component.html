@@ -1,0 +1,45 @@
+<div id="comment">
+  <div class="nav">
+    <ol class="breadcrumb">
+      <!--<li><a href="#" routerLink="/home/school-list">学校</a></li>-->
+      <li class="active">留言管理</li>
+    </ol>
+  </div>
+  <div class="device-header">
+    <form class="" role="form">
+      <div class="form-group col-xs-2 right">
+      </div>
+    </form>
+  </div>
+  <div class="device-form">
+    <table class="table">
+      <thead>
+      <tr>
+        <th class="text-center col-xs-1">发送人</th>
+        <th class="text-center col-xs-1">发送人电话</th>
+        <th class="text-center col-xs-2">发送时间</th>
+        <th class="text-center col-xs-7">内容</th>
+        <th class="text-center col-xs-1">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let comment of comments">
+        <td class="text-center">{{comment.sendName}}</td>
+        <td class="text-center">{{comment.sendPhone}}</td>
+        <td class="text-center">{{comment.createTime}}</td>
+        <td class="text-left">{{comment.content}}</td>
+        <td class="text-center">
+          <a href="javascript:void(0)" [attr.value]="comment.id" (click)="deleteComment($event)">删除</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="footer-right right">
+      <ul id="pagination-details" class="pagination-sm"></ul>
+    </div>
+  </div>
+
+  <!--新建设备-->
+
+  <!--修改设备-->
+</div>

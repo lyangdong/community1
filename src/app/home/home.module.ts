@@ -21,7 +21,8 @@ import {HeaderComponent} from "./header/header.component";
 import { PropagandaStatisticsComponent } from './propaganda-statistics/propaganda-statistics.component';
 import { DeviceComponent } from './device/device.component';
 import { TemExampleComponent } from './tem-example/tem-example.component';
-
+import { BespeakComponent } from './bespeak/bespeak.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,8 @@ import { TemExampleComponent } from './tem-example/tem-example.component';
     PropagandaStatisticsComponent,
     DeviceComponent,
     TemExampleComponent,
+    BespeakComponent,
+    CommentComponent,
   ]
 })
 export class HomeModule { }

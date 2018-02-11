@@ -1,0 +1,95 @@
+<div id="bespeak">
+  <div class="nav">
+    <ol class="breadcrumb">
+      <!--<li><a href="#" routerLink="/home/school-list">学校</a></li>-->
+      <li class="active">预约信息管理</li>
+    </ol>
+  </div>
+  <div class="bespeak-header">
+    <!--<form class="" role="form">-->
+      <!--<div class="form-group col-xs-2 right">-->
+        <!--<button type="button" class="btn btn-success right content-add-button" data-toggle="modal" data-target="#addDevice">新增</button>-->
+      <!--</div>-->
+    <!--</form>-->
+  </div>
+  <div class="device-form">
+    <table class="table" style="table-layout: fixed;">
+      <thead>
+      <tr>
+        <th class="text-center col-xs-1">标题</th>
+        <th class="text-center col-xs-1">简介</th>
+        <th class="text-center col-xs-1">内容</th>
+        <th class="text-center col-xs-1">分类名称</th>
+        <th class="text-center col-xs-1">创建时间</th>
+        <th class="text-center col-xs-1">预约者姓名</th>
+        <th class="text-center col-xs-1">联系电话</th>
+        <th class="text-center col-xs-1">联系人地址</th>
+        <th class="text-center col-xs-1">状态</th>
+        <th class="text-center col-xs-1">操作</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="bespeak-table" *ngFor="let reserve of reserves">
+        <td class="text-center">{{reserve.title}}</td>
+        <td class="text-center">{{reserve.abstractTxt}}</td>
+        <td class="text-center table-content">{{reserve.content.substr(3,20)}}</td>
+        <td class="text-center">{{reserve.catName}}</td>
+        <td class="text-center">{{reserve.createDate}}</td>
+        <td class="text-center">{{reserve.name}}</td>
+        <td class="text-center">{{reserve.phone}}</td>
+        <td class="text-center">{{reserve.address}}</td>
+        <td *ngIf="reserve.type==0" class="text-center danger">未处理</td>
+        <td *ngIf="reserve.type==1" class="text-center success">正在处理</td>
+        <td *ngIf="reserve.type==2" class="text-center ">已处理</td>
+        <td class="text-center">
+          <!--<a href="" routerLink="/system/resident-details/{{account.accountid}}">详情</a>-->
+          <a href="" [attr.value]="reserve.id" (click)="updateReserve($event)" data-toggle="modal" data-target="#updateReserve">修改状态</a>
+          <!--<div class="reserve-hover">-->
+            <!--<ul>-->
+              <!--<li>已处理</li>-->
+              <!--<li>正在处理</li>-->
+              <!--<li>未处理</li>-->
+            <!--</ul>-->
+          <!--</div>-->
+          <a href="javascript:void(0)" [attr.value]="reserve.id" (click)="deleteReserve($event)">删除</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="footer-right right">
+      <ul id="pagination-details" class="pagination-sm"></ul>
+    </div>
+  </div>
+
+  <!--新建设备-->
+  <div class="modal fade" id="updateReserve" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="edit pull-right" id="edit"><span class="glyphicon glyphicon-pencil"></span></button> -->
+          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove close"></span></button>
+          <h4 class="modal-title">添加设备</h4>
+        </div>
+        <div class="modal-body">
+          <form id="addDeviceForm">
+            <div class="form-group">
+              <div class="col-xs-2"><label>状态</label></div>
+              <div class="col-xs-4">
+                <select name="updateType" [(ngModel)]="updateType" class="form-control">
+                  <option value="0">未处理</option>
+                  <option value="1">正在处理</option>
+                  <option value="2">已处理</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" (click)="update()" >确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
