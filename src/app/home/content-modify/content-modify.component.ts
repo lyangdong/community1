@@ -1,15 +1,17 @@
-import { Component, OnInit ,Inject ,Renderer2 } from '@angular/core';
+import { Component, OnInit ,Inject ,Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http} from '@angular/http';
 import { RequestService } from '../../services/request.service';
 import {ActivatedRoute} from '@angular/router'
 import {inject} from "@angular/core/testing";
 import {DOCUMENT} from "@angular/common";
+import { Ng2Ueditor } from 'ng2-ueditor';
+
 
 
 declare let $:any;
 declare let layer:any;
-declare let CKEDITOR:any;
+declare let Ueditor:any;
 declare let editor2:any;
 
 @Component({
@@ -18,15 +20,17 @@ declare let editor2:any;
   styleUrls: ['./content-modify.component.css']
 })
 export class ContentModifyComponent implements OnInit {
-  ckeditorContent = '';
-
+  @ViewChild('ueditor') ueditor: Ng2Ueditor;
+  // ckeditorContent = '';
+  //
+  //
   // config = {
   //   filebrowserBrowseUrl: '',
   //   filebrowserUploadUrl: this.requestService.IP+'/api/upload.do',
   //   extraPlugins: 'divarea',
   //   height:500
   // };
-
+  content:any
   userId:any;
   communityId:any;
   tokenId:any;
@@ -111,19 +115,19 @@ export class ContentModifyComponent implements OnInit {
 
     // this._renderer2.appendChild(this._document.body,s);
 
-    let script1 = document.createElement('script');
-    script1.type = 'text/javascript-lazy';
-    script1.src = "assets/js/wangEditor.min.js";
-    $('body').append(script1);
-    let script3 = document.createElement('script');
-    script3.type = 'text/javascript-lazy';
-    script3.src = "assets/js/wangEditor-fullscreen-plugin.js";
-    $('body').append(script3);
-
-    let script2 = document.createElement('script');
-    script2.type = 'text/javascript-lazy';
-    script2.src = "assets/js/edit.js";
-    $('body').append(script2);
+    // let script1 = document.createElement('script');
+    // script1.type = 'text/javascript-lazy';
+    // script1.src = "assets/js/wangEditor.min.js";
+    // $('body').append(script1);
+    // let script3 = document.createElement('script');
+    // script3.type = 'text/javascript-lazy';
+    // script3.src = "assets/js/wangEditor-fullscreen-plugin.js";
+    // $('body').append(script3);
+    //
+    // let script2 = document.createElement('script');
+    // script2.type = 'text/javascript-lazy';
+    // script2.src = "assets/js/edit.js";
+    // $('body').append(script2);
   }
 
   previewHead=()=>{
@@ -198,8 +202,8 @@ export class ContentModifyComponent implements OnInit {
         this.updateContents.abstract_txt =res.json().target.abstract_txt;
         this.updateContents.coverId =res.json().target.cover_id;
         this.updateContents.businessId = res.json().target.business_id;
-        // this.ckeditorContent = res.json().target.content;
-        editor2.txt.html(res.json().target.content);
+        this.content = res.json().target.content;
+        // editor2.txt.html(res.json().target.content);
         // console.log(this.updateContents.content );
         this.updateContents.flag = res.json().target.flag;
         this.updateContents.isActive=res.json().target.is_active;
@@ -219,7 +223,7 @@ export class ContentModifyComponent implements OnInit {
   };//修改时获取信息
 
   updatecatcontent=()=> {
-    let content = editor2.txt.html();
+    let content = this.content;
     content= encodeURIComponent(content);
     let state = $('input[name="state"]:checked').val();
     if(!this.updateContents.title){
@@ -279,8 +283,8 @@ export class ContentModifyComponent implements OnInit {
 
   isStart=()=>{
     let that =this;
-    $('input[type="radio"]').change(function () {
-      let isStart =  $('input[type="radio"]:checked').attr('class');
+    $('input[name="radioLink"]').change(function () {
+      let isStart =  $('input[name="radioLink"]:checked').attr('class');
       if(isStart=='stop'){
         $('input[name="link"]').attr('disabled',true);
         that.updateContents.flag = 0

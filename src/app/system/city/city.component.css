@@ -17,6 +17,7 @@
   padding: 20px;
 }
 .community{
+  min-height: 740px;
   background-color: #F6F8F9;
 }
 .city-content-out-box{

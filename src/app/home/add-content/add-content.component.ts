@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http} from '@angular/http';
 import { RequestService } from '../../services/request.service';
@@ -13,7 +13,6 @@ declare let editor2:any;
   styleUrls: ['./add-content.component.css']
 })
 export class AddContentComponent implements OnInit {
-
   // ckeditorContent='';
   // config = {
   //   filebrowserBrowseUrl: '&&&&&',
@@ -32,7 +31,8 @@ export class AddContentComponent implements OnInit {
   catcontents:any={businessId:'',title:'',coverId:'',abstractTxt:'',content:'',link:'',isTop:'0',isActive:'1',order:'1',businessType:'0'};
   logoId:any;
 
-  constructor(private http: Http, private router: Router, private requestService: RequestService) { }
+  constructor(private http: Http, private router: Router, private requestService: RequestService) {
+  }
   ngOnInit() {
     $('#loading_con').fadeOut();
     this.isStart();
@@ -77,20 +77,20 @@ export class AddContentComponent implements OnInit {
       layer.msg('获取网络信息失败，请检查网络');
     });//初始化
 
-    let script1 = document.createElement('script');
-    script1.type = 'text/javascript-lazy';
-    script1.src = "assets/js/wangEditor.min.js";
-    $('body').append(script1);
-
-    let script3 = document.createElement('script');
-    script3.type = 'text/javascript-lazy';
-    script3.src = "assets/js/wangEditor-fullscreen-plugin.js";
-    $('body').append(script3);
-
-    let script2 = document.createElement('script');
-    script2.type = 'text/javascript-lazy';
-    script2.src = "assets/js/edit.js";
-    $('body').append(script2);
+    // let script1 = document.createElement('script');
+    // script1.type = 'text/javascript-lazy';
+    // script1.src = "assets/js/wangEditor.min.js";
+    // $('body').append(script1);
+    //
+    // let script3 = document.createElement('script');
+    // script3.type = 'text/javascript-lazy';
+    // script3.src = "assets/js/wangEditor-fullscreen-plugin.js";
+    // $('body').append(script3);
+    //
+    // let script2 = document.createElement('script');
+    // script2.type = 'text/javascript-lazy';
+    // script2.src = "assets/js/edit.js";
+    // $('body').append(script2);
   }
 
   previewHead=()=>{
@@ -148,7 +148,7 @@ export class AddContentComponent implements OnInit {
   };//图片上传，获取图片ID
 
   addCatContent=()=>{
-    let content = editor2.txt.html();
+    let content = this.content;
     content= encodeURIComponent(content);
     let state = $('input[name="state"]:checked').val();
     if(!this.catcontents.title){
@@ -202,8 +202,8 @@ export class AddContentComponent implements OnInit {
 
   isStart=()=>{
     let that =this;
-    $('input[type="radio"]').change(function () {
-      let isStart =  $('input[type="radio"]:checked').attr('class');
+    $('input[name="radioLink"]').change(function () {
+      let isStart =  $('input[name="radioLink"]:checked').attr('class');
       if(isStart=='stop'){
         $('input[name="link"]').attr('disabled',true);
         that.flag  = 0;

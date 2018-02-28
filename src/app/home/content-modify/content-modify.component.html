@@ -55,17 +55,22 @@
       <div class="col-xs-12 add-group">
         <label class="col-xs-2 ">正&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文</label>
         <div class="col-xs-8">
+          <ng2-ueditor [(ngModel)]="content" name="ueditor"></ng2-ueditor>
           <!--<ckeditor-->
             <!--[config]="{extraPlugins: 'divarea'}"-->
             <!--[(ngModel)]="ckeditorContent"-->
             <!--debounce="500"-->
+            <!--id="editCon"-->
             <!--name="ckeditor">-->
           <!--</ckeditor>-->
           <!--<ckeditor id="contentEditor" name="contentEditor" [(ngModel)]="ckeditorContent" debounce="500"  [config]="config">-->
           <!--</ckeditor>-->
           <!--<textarea [(ngModel)]="updateContents.content" id="contentEditor" name="contentEditor" cols="20" rows="2" class="ckeditor"></textarea>-->
           <!--<textarea [(ngModel)]="updateContents.content"  name="contenttexts" id="editor1" cols="30" rows="10"></textarea>-->
-          <div id="editCon" name="content"></div>
+          <!--<div id="editCon" name="content"></div>-->
+          <!--<span class="upload-src">-->
+            <!--<div class="upload-button"></div>-->
+          <!--</span>-->
         </div>
       </div>
       <!--<div class="col-xs-12 add-group">-->
@@ -80,8 +85,8 @@
           <input [(ngModel)]="updateContents.ref_url" name="link" type="text" class="form-control" disabled placeholder="启用外部链接后，正文编辑区失效">
         </div>
         <div class="col-xs-3 content-add-radio">
-          <input type="radio" name="radio" class="start">启用
-          <input type="radio" name="radio" class="stop" checked="checked">不启用
+          <input type="radio" name="radioLink" class="start">启用
+          <input type="radio" name="radioLink" class="stop" checked="checked">不启用
         </div>
       </div>
       <div class="col-xs-12 add-group">

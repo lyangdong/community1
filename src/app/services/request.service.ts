@@ -615,6 +615,17 @@ export class RequestService {
     headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
     return this.http.post(url,body,{headers: headers});
   }
+  getMessage(reverceId){
+    const url = this.IP+'/api/getMessageByReverceId?reverceId='+reverceId;
+    return this.http.get(url);
+  }
+  sendMseeage(messageId,sendId,receiverId,content,reserveId){
+    const url = this.IP+'/api/sendMessage';
+    let body = 'messageId='+messageId+ '&sendId='+sendId+ '&receiverId='+receiverId+ '&content='+content+ '&reserveId='+reserveId;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+    return this.http.post(url,body,{headers: headers});
+  }
 
 
 

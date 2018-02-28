@@ -280,7 +280,9 @@ export class ClassifyComponent implements OnInit {
         // layer.msg('账号或密码错误');
         layer.msg(res.json().text);return;
       }else {
+        console.log(res.json().target)
         this.categorysModify = res.json().target;
+        this.categorysModify.temId = res.json().target.temId;
         this.p_idModify = res.json().target.p_id;
         this.logoId = res.json().target.logo_id;
         this.updateRef = res.json().target.url;

@@ -175,8 +175,30 @@ input:-webkit-autofill{-webkit-box-shadow: 0 0 0 1000px white inset !important;}
   height: 400px;
   padding-top: 15px!important;
   overflow-y: scroll;
-
 }
+/*#editCon{*/
+  /*position: relative;*/
+/*}*/
+/*.upload-src{*/
+  /*display: block;*/
+  /*position: absolute;*/
+  /*background-color: red;*/
+  /*height: 32px;*/
+  /*width: 36px;*/
+  /*z-index: 100000!important;*/
+  /*top: 0px;*/
+  /*left: 462px;*/
+/*}*/
+/*.upload-button{*/
+  /*position: absolute;*/
+  /*background-color: white;*/
+  /*border: 1px grey solid;*/
+  /*height: 80px;*/
+  /*width: 160px;*/
+  /*top: 32px;*/
+  /*left: -60px;*/
+/*}*/
+
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-track{background-color: rgba(243, 243, 243, 0.98);}
 ::-webkit-scrollbar-thumb{background-color: #c4c4c4;}

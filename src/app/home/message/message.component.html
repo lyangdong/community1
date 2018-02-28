@@ -1,0 +1,68 @@
+<div class="message">
+  <div class="nav">
+    <ol class="breadcrumb">
+      <!--<li><a href="#" routerLink="/home/school-list">学校</a></li>-->
+      <!--<li><a href="#" routerLink="/home/bespeak" >预约信息管理</a></li>-->
+      <li class="active">查询信息</li>
+    </ol>
+  </div>
+  <div class="send-newMessage">
+    <button class="btn btn-success right" data-toggle="modal" data-target="#sendNew" (click)="sendModal()">发送新消息</button>
+  </div>
+  <div class="clear"></div>
+  <div class="message-table">
+    <div *ngFor="let message of messages,let i = index" class="message-box">
+      <div class="message-img col-xs-1"></div>
+      <div class="col-xs-11 table-right firstMessage">
+        <div class="title">
+          <span class="name">{{message.firstMessage.senderName}}</span>
+          <span class="time">{{message.firstMessage.createDate }}</span>
+        </div>
+        <div class="content">{{message.firstMessage.content }}</div>
+        <div class="glyphicon glyphicon-share-alt replay"  (click)="toggleBox(i)"><span> 回复</span></div>
+        <div *ngIf="toggleReplay==i" class="replay-box">
+          <button class="button-content btn btn-success" [attr.value]="message.firstMessage.replyid" [attr.receiverId]="message.firstMessage.receiverId" (click)="sendMessage($event)">回复</button>
+          <textarea [(ngModel)]="replayContent" name="{{i}}" rows="6"></textarea>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div *ngFor="let replay of message.subMessage" class="replay-table">
+        <div class="message-img col-xs-1"></div>
+        <div class="col-xs-11 table-right">
+          <div class="title">
+            <span class="name">{{replay.senderName}}</span>
+            <span class="time">{{replay.createDate}}</span>
+          </div>
+          <div class="content">{{replay.content}}</div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  <!--发送消息模态框-->
+  <div class="modal fade" id="sendNew" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;
+          </button>
+          <h4 class="modal-title">
+            发送消息
+          </h4>
+        </div>
+        <div class="modal-body">
+          <textarea [(ngModel)]="newContent" cols="77" name="newContent"  rows="6"></textarea>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-close" data-dismiss="modal">关闭
+          </button>
+          <button type="button" class="btn btn-primary" (click)="sendNewMessage()">
+            确定
+          </button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+  </div>
+</div>

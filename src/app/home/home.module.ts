@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import {CKEditorModule } from 'ng2-ckeditor';
 
 
 import { HomeRouter } from './home.routes';
@@ -23,6 +22,8 @@ import { DeviceComponent } from './device/device.component';
 import { TemExampleComponent } from './tem-example/tem-example.component';
 import { BespeakComponent } from './bespeak/bespeak.component';
 import { CommentComponent } from './comment/comment.component';
+import { Ng2UeditorModule } from 'ng2-ueditor';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { CommentComponent } from './comment/comment.component';
     HomeRouter,
     FormsModule,
     ReactiveFormsModule,
-    CKEditorModule,
+    Ng2UeditorModule
   ],
   declarations: [
     TempletComponent,
@@ -50,6 +51,8 @@ import { CommentComponent } from './comment/comment.component';
     TemExampleComponent,
     BespeakComponent,
     CommentComponent,
+    MessageComponent,
+
   ]
 })
 export class HomeModule { }

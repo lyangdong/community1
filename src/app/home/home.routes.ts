@@ -15,6 +15,7 @@ import { PropagandaStatisticsComponent } from './propaganda-statistics/propagand
 import { DeviceComponent } from './device/device.component';
 import { BespeakComponent } from './bespeak/bespeak.component';
 import { CommentComponent } from './comment/comment.component';
+import { MessageComponent } from './message/message.component';
 
 const HomeRoutes : Routes = <Routes> [
   {
@@ -62,6 +63,9 @@ const HomeRoutes : Routes = <Routes> [
       {
         path : 'content-modify/:id',
         component : ContentModifyComponent
+      }, {
+        path : 'message/:id',
+        component : MessageComponent
       }, {
         path : 'bespeak',
         component : BespeakComponent
