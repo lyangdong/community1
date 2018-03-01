@@ -18,7 +18,7 @@
           <span class="name">{{message.firstMessage.senderName}}</span>
           <span class="time">{{message.firstMessage.createDate }}</span>
         </div>
-        <div class="content">{{message.firstMessage.content }}</div>
+        <div class="content" (click)="contentClick($event)">{{message.firstMessage.content}}</div>
         <div class="glyphicon glyphicon-share-alt replay"  (click)="toggleBox(i)"><span> 回复</span></div>
         <div *ngIf="toggleReplay==i" class="replay-box">
           <button class="button-content btn btn-success" [attr.value]="message.firstMessage.replyid" [attr.receiverId]="message.firstMessage.receiverId" (click)="sendMessage($event)">回复</button>
@@ -33,7 +33,7 @@
             <span class="name">{{replay.senderName}}</span>
             <span class="time">{{replay.createDate}}</span>
           </div>
-          <div class="content">{{replay.content}}</div>
+          <div class="content" (click)="contentClick($event)">{{replay.content}}</div>
         </div>
         <div class="clear"></div>
       </div>

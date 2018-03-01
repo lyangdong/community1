@@ -35,9 +35,11 @@ export class MessageComponent implements OnInit {
     this.getUrl();
     this.getMessage();
     $('#loading_con').fadeOut();
+    this.onInt();
   }
 
   getMessage = () => {
+    let that =this
     this.requestService.getMessage(this.reverceId).subscribe(res => {
       if (res.json().code != 0) {
         // layer.msg('账号或密码错误');
@@ -47,6 +49,9 @@ export class MessageComponent implements OnInit {
         console.log(res.json())
         this.messages = res.json().target
         this.subMessage = res.json().target.subMessage
+        setTimeout(function () {
+          that.onInt()
+        },10)
 
       }
     }, erro => {
@@ -132,6 +137,12 @@ export class MessageComponent implements OnInit {
     this.newContent='';
   }
 
+  contentClick=(event)=>{
+    $(event.target).html($(event.target).text())
+  };
+  onInt=()=>{
+    $('.content').click()
+  }
 
   getUrl = () => {
     this.activatedRoute.params.subscribe(params => {
