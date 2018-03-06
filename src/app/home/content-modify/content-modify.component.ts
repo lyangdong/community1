@@ -225,6 +225,7 @@ export class ContentModifyComponent implements OnInit {
   updatecatcontent=()=> {
     let content = this.content;
     content= encodeURIComponent(content);
+    this.updateContents.link = encodeURIComponent(this.updateContents.link);
     let state = $('input[name="state"]:checked').val();
     if(!this.updateContents.title){
       layer.msg('请输入内容标题');return

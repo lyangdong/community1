@@ -1,7 +1,7 @@
 .Weight{font-weight: normal;color: #777;}
 .edge{
   padding-left: 0!important;
-  border-bottom: 1px solid #ccc;
+  min-width: 1280px;
 }
 /* .side{border-left: 1px solid #ccc;} */
 /* .side2{border-left: 1px solid;padding-bottom:50px;border-color: #ccc;} */
@@ -27,7 +27,19 @@
   text-align: right;
 }
 .test{
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.box{
+  min-width: 235px;
+}
+#pindao .test{
+  width: 230px!important;
+  height:297px!important;
+  padding: 5px;
+  box-shadow:2px 2px 2px #dadada,4px 4px 3px #e8e8e8,5px 5px 5px #f8f8f8,-1px -1px 1px #f4f4f4,-2px -2px 1px #f8f8f8,-3px -3px 1px #fbfbfb;
+  border-right: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
 }
 .photo-box{
   width: 218px!important;

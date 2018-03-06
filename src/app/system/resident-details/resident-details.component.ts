@@ -44,12 +44,13 @@ export class ResidentDetailsComponent implements OnInit {
       $("input").removeAttr("disabled");
       $("select").removeAttr("disabled");
     });
-    $("#queding").click(function(){
-      $("input").attr("disabled", true);
-      $("select").attr("disabled", true);
-    });
+    // $("#queding").click(function(){
+    //   $("input").attr("disabled", true);
+    //   $("select").attr("disabled", true);
+    // });
     this.resident={alias:""}
     this.getUrl();
+    $('#loading_con').fadeOut();
     // this.getSimpleResident(this.userId);
   }
   getUrl=()=>{
@@ -94,11 +95,19 @@ export class ResidentDetailsComponent implements OnInit {
   };//获取单个
   updateResident=()=>{
     // console.log(this.name);
+    var reg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
+    if(reg.test(this.idCard) === false)
+    {
+      layer.msg("身份证输入不合法");
+      return;
+    }
     this.requestService.updateResident(this.accountId,this.openId,this.name,this.sex,this.nation,this.idCard,this.birthday,this.culture,this.postcode,this.phone,this.telPhone,this.permanentAddress,this.residentialAddress,this.communityId,this.tokenId).subscribe(res=>{
       if(res.json().code!=0){
         // layer.msg('账号或密码错误');
         layer.msg(res.json().text);return;
       }else {
+        $("input").attr("disabled", true);
+        $("select").attr("disabled", true);
         layer.msg('修改成功');
         $('.btn-close').click();
       }
@@ -110,4 +119,13 @@ export class ResidentDetailsComponent implements OnInit {
       layer.msg('获取网络信息失败，请检查网络');
     })
   };//修改账号信息
+
+   isCardNo=(card)=>{
+     var reg = /( ^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
+     if(reg.test(card) === false)
+     {
+       alert("身份证输入不合法");
+       return false;
+     }
+   }
 }

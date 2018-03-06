@@ -150,6 +150,7 @@ export class AddContentComponent implements OnInit {
   addCatContent=()=>{
     let content = this.content;
     content= encodeURIComponent(content);
+    this.catcontents.link = encodeURIComponent(this.catcontents.link);
     let state = $('input[name="state"]:checked').val();
     if(!this.catcontents.title){
       layer.msg('请输入内容标题');return

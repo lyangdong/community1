@@ -38,8 +38,8 @@ export class BespeakComponent implements OnInit {
         return;
       }else {
         $('#loading_con').fadeOut();
-        // console.log(res.json().target);
-        this.reserves = res.json().target;
+        console.log(res.json());
+        this.reserves = res.json().target.reserveVoList;
         if(page==1){
           $('#pagination-details').empty();
           $('#pagination-details').removeData("twbs-pagination");
