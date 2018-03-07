@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Http} from '@angular/http';
-import { RequestService } from '../../services/request.service';
-import {ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Http} from '@angular/http';
+import {RequestService} from '../../services/request.service';
+import {ActivatedRoute} from '@angular/router';
 
-declare let layer:any;
-declare let $:any;
+declare let layer: any;
+declare let $: any;
 
 @Component({
   selector: 'app-resident-details',
@@ -14,33 +14,34 @@ declare let $:any;
 })
 export class ResidentDetailsComponent implements OnInit {
 
-  tokenId=  sessionStorage.tokenId;
+  tokenId = sessionStorage.tokenId;
 
-  pid:any;
-  userId:any;
+  pid: any;
+  userId: any;
   name: any;
-  resident:any;
-  SimpleResident:any;
-  openId:any;
-  nation:any;
-  sex:any;
-  birthday:any;
-  culture:any;
-  postcode:any;
-  phone:any;
-  telPhone:any;
-  permanentAddress:any;
-  residentialAddress:any;
-  communityId:any='';
-  idCard:any;
-  accountId:any;
+  resident: any;
+  SimpleResident: any;
+  openId: any;
+  nation: any;
+  sex: any;
+  birthday: any;
+  culture: any;
+  postcode: any;
+  phone: any;
+  telPhone: any;
+  permanentAddress: any;
+  residentialAddress: any;
+  communityId: any = '';
+  idCard: any;
+  accountId: any;
 
 
-  constructor(private http: Http, private router: Router, private requestService: RequestService,private activatedRoute:ActivatedRoute) { }
+  constructor(private http: Http, private router: Router, private requestService: RequestService, private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.userId = sessionStorage.accountid;
-    $("#change").click(function(){
+    $("#change").click(function () {
       $("input").removeAttr("disabled");
       $("select").removeAttr("disabled");
     });
@@ -48,24 +49,26 @@ export class ResidentDetailsComponent implements OnInit {
     //   $("input").attr("disabled", true);
     //   $("select").attr("disabled", true);
     // });
-    this.resident={alias:""}
+    this.resident = {alias: ""}
     this.getUrl();
     $('#loading_con').fadeOut();
     // this.getSimpleResident(this.userId);
   }
-  getUrl=()=>{
-    this.activatedRoute.params.subscribe(params=>{
+
+  getUrl = () => {
+    this.activatedRoute.params.subscribe(params => {
       // this.pid = params.id;
       // console.log(params);
       this.getSimpleResident(params['id']);
     })
   };//获取pid
-  getSimpleResident=(userId)=>{
-    this.requestService.getSimpleResident(userId,this.tokenId).subscribe(res=>{
-      if(res.json().code!=0){
+  getSimpleResident = (userId) => {
+    this.requestService.getSimpleResident(userId, this.tokenId).subscribe(res => {
+      if (res.json().code != 0) {
         // layer.msg('账号或密码错误');
-        layer.msg(res.json().text);return;
-      }else {
+        layer.msg(res.json().text);
+        return;
+      } else {
         console.log(res.json());
 
         this.resident = res.json().target;
@@ -79,13 +82,13 @@ export class ResidentDetailsComponent implements OnInit {
         this.postcode = res.json().target.postcode;
         this.telPhone = res.json().target.telPhone;
         this.phone = res.json().target.phone;
-        this.accountId= res.json().target.accountid
+        this.accountId = res.json().target.accountid
         this.permanentAddress = res.json().target.permanentAddress;
         this.residentialAddress = res.json().target.residentialAddress;
         // console.log(this.resident);
       }
-    },erro =>{
-      if(erro.type==3){
+    }, erro => {
+      if (erro.type == 3) {
         layer.msg('登录超时，请重新登录');
         this.router.navigate(['/login'])
         return;
@@ -93,39 +96,39 @@ export class ResidentDetailsComponent implements OnInit {
       layer.msg('获取网络信息失败，请检查网络');
     })
   };//获取单个
-  updateResident=()=>{
+  updateResident = () => {
     // console.log(this.name);
     var reg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
-    if(reg.test(this.idCard) === false)
-    {
+    if (reg.test(this.idCard) === false) {
       layer.msg("身份证输入不合法");
       return;
     }
-    this.requestService.updateResident(this.accountId,this.openId,this.name,this.sex,this.nation,this.idCard,this.birthday,this.culture,this.postcode,this.phone,this.telPhone,this.permanentAddress,this.residentialAddress,this.communityId,this.tokenId).subscribe(res=>{
-      if(res.json().code!=0){
+    this.requestService.updateResident(this.accountId, this.openId, this.name, this.sex, this.nation, this.idCard, this.birthday, this.culture, this.postcode, this.phone, this.telPhone, this.permanentAddress, this.residentialAddress, this.communityId, this.tokenId).subscribe(res => {
+      if (res.json().code != 0) {
         // layer.msg('账号或密码错误');
-        layer.msg(res.json().text);return;
-      }else {
+        layer.msg(res.json().text);
+        return;
+      } else {
         $("input").attr("disabled", true);
         $("select").attr("disabled", true);
         layer.msg('修改成功');
         $('.btn-close').click();
       }
-    },erro =>{
-      if(erro.type==3){
+    }, erro => {
+      if (erro.type == 3) {
         layer.msg('登录超时，请重新登录');
-        this.router.navigate(['/login']); return;
+        this.router.navigate(['/login']);
+        return;
       }
       layer.msg('获取网络信息失败，请检查网络');
     })
   };//修改账号信息
 
-   isCardNo=(card)=>{
-     var reg = /( ^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
-     if(reg.test(card) === false)
-     {
-       alert("身份证输入不合法");
-       return false;
-     }
-   }
+  isCardNo = (card) => {
+    var reg = /( ^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
+    if (reg.test(card) === false) {
+      alert("身份证输入不合法");
+      return false;
+    }
+  }
 }
