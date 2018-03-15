@@ -26,6 +26,7 @@ export class MessageComponent implements OnInit {
   newContent:any='';
 
   constructor(private http: Http, private router: Router, private requestService: RequestService, private activatedRoute: ActivatedRoute) {
+
   }
 
   ngOnInit() {

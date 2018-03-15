@@ -26,8 +26,11 @@ export class ChannelComponent implements OnInit {
   columnIds:any=1;
   temId:any=1;
   showNo:any;
-  show:any;
+  showOther:any;
   order:any;
+  logoId:any;
+  updateLogoUrl:any;
+  updateShowOther:any;
 
   undateChannelInfo:any={show:'1',temId:'1',columnIds:''};
 
@@ -56,6 +59,112 @@ export class ChannelComponent implements OnInit {
     },300);
 
   };// 复制链接
+  previewHead=()=>{
+    let that = this;
+    //预览
+    $("#classifyImg").change(function () {
+      let fil = this.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(fil);
+      reader.onload = function () {
+        let date = reader.result;
+        $('#filesImg img').attr('src', date);
+        that.uploadLogo();
+      };
+    })
+  }; //图片预览
+
+  uploadLogo=()=>{
+    let that = this;
+    let formData = new FormData();
+    let name = $("#classifyImg").val();
+    formData.append("file", $("#classifyImg")[0].files[0]);
+    formData.append("name", name);
+    $.ajax({
+      type: 'post',
+      url: this.requestService.IP+'/upload.do',
+      data: formData,
+      processData: false,
+      contentType: false,
+      rossDomain: true,
+      xhrFields: {            //带上Cookie
+        withCredentials: true
+      },
+
+      success: (res) => {
+        if (res.code == 1) {
+          layer.msg('请重新登录');
+          that.router.navigate(['/login']);
+          return;
+        } else if (res.code == 0) {
+          that.logoId = res.data.src;
+          console.log(res.data)
+        } else if (res.code == 1009) {
+          layer.msg('文件太大')
+        } else if (res.code == 1010) {
+          layer.msg('文件类型不支持')
+        } else if (res.code == 500) {
+          layer.msg('上传出错')
+        }
+      },
+      error: () => {
+        layer.msg('上传失败，请检查网络')
+      }
+    });
+  };//图片上传，获取图片ID
+
+  previewHeadModiyf=()=>{
+    let that = this;
+    //预览
+    $("#classifyImgModify").change(function () {
+      let fil = this.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(fil);
+      reader.onload = function () {
+        let date = reader.result;
+        $('#filesImgModify img').attr('src', date);
+        that.uploadLogoModify();
+      };
+    })
+  }; //图片预览
+
+  uploadLogoModify=()=>{
+    let that = this;
+    let formData = new FormData();
+    let name = $("#classifyImgModify").val();
+    formData.append("file", $("#classifyImgModify")[0].files[0]);
+    formData.append("name", name);
+    $.ajax({
+      type: 'post',
+      url: this.requestService.IP+'/upload.do',
+      data: formData,
+      processData: false,
+      contentType: false,
+      rossDomain: true,
+      xhrFields: {            //带上Cookie
+        withCredentials: true
+      },
+
+      success: (res) => {
+        if (res.code == 1) {
+          layer.msg('请重新登录');
+          that.router.navigate(['/login']);
+          return;
+        } else if (res.code == 0) {
+          that.undateChannelInfo.logoUrl = res.data.src;
+        } else if (res.code == 1009) {
+          layer.msg('文件太大')
+        } else if (res.code == 1010) {
+          layer.msg('文件类型不支持')
+        } else if (res.code == 500) {
+          layer.msg('上传出错')
+        }
+      },
+      error: () => {
+        layer.msg('上传失败，请检查网络')
+      }
+    });
+  };//图片上传，获取图片ID
 
   getChannel=()=>{
     $('#loading_con').fadeIn();
@@ -74,14 +183,17 @@ export class ChannelComponent implements OnInit {
       $('#loading_con').fadeOut();
     })
   };//获取频道信息
+
   addChannel=()=>{
-     this.show = $('input[type="radio"]:checked').val();
+     this.showOther = $('input[name="showOther"]:checked').val();
+
      // console.log(this.show);
-     if(this.show=="0"){
-       this.show = true
+     if(this.showOther==1){
+       this.showOther = true
      }else {
-       this.show = false
+       this.showOther = false
      }
+    // console.log(this.logoId,this.showOther,this.addChannelInfo.topName)
     if(!this.addChannelInfo.name){
       layer.msg('请输入频道名称');return
     }else if(!this.addChannelInfo.introduce){
@@ -89,7 +201,7 @@ export class ChannelComponent implements OnInit {
     }else if(!this.order){
       layer.msg('请输入选择顺序');return
     }
-    this.requestService.addChannel(
+    this.requestService.addChannelPartent(
       this.addChannelInfo.name,
       this.addChannelInfo.introduce,
       this.columnIds,
@@ -97,9 +209,12 @@ export class ChannelComponent implements OnInit {
       this.userId,
       this.communityId,
       true,
+      this.showOther,
       this.order,
       -1,
-      this.tokenId).subscribe(res=>{
+      this.tokenId,
+      this.logoId,
+      this.addChannelInfo.topName).subscribe(res=>{
       if(res.json().code!=0){
         // layer.msg('账号或密码错误');
         layer.msg(res.json().text);return;
@@ -107,6 +222,7 @@ export class ChannelComponent implements OnInit {
         layer.msg('登录超时，请重新登录');
         this.router.navigate(['/login']);
       }else {
+        $('#filesImg img').attr('src','');
         this.getChannel();
         // console.log(res.json());
         layer.msg('添加成功');
@@ -129,7 +245,12 @@ export class ChannelComponent implements OnInit {
         layer.msg(res.json().text);return;
       }else {
         this.undateChannelInfo = res.json().target;
-        // console.log(this.undateChannelInfo);
+        if(this.undateChannelInfo.showOther){
+          $('#updateShowOtherYse').attr('checked',true)
+        }else {
+          $('#updateShowOtherNo').attr('checked',true)
+        }
+        console.log(this.undateChannelInfo);
       }
     },erro =>{
       // if(erro.type==3){
@@ -141,7 +262,15 @@ export class ChannelComponent implements OnInit {
   };//获取单个频道信息
 
   updateChannel=()=>{
-    this.requestService.updateChannel(
+    this.updateShowOther = $('input[name="updateShowOther"]:checked').val();
+
+    // console.log(this.show);
+    if(this.updateShowOther==1){
+      this.updateShowOther = true
+    }else {
+      this.updateShowOther = false
+    }
+    this.requestService.updateChannelPartent(
       this.channelId,
       this.undateChannelInfo.name,
       this.undateChannelInfo.introduce,
@@ -152,7 +281,10 @@ export class ChannelComponent implements OnInit {
       true,
       this.undateChannelInfo.order,
       -1,
-      this.tokenId).subscribe(res=>{
+      this.tokenId,
+      this.undateChannelInfo.topName,
+      this.undateChannelInfo.logoUrl,
+      this.updateShowOther).subscribe(res=>{
       if(res.json().code!=0){
         // layer.msg('账号或密码错误');
         layer.msg(res.json().text);return;

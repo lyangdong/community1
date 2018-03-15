@@ -29,3 +29,62 @@
   background-color: #5cb85c;
   color:white;
 }
+#showOther input{
+  width: 20px;
+  float: left;
+}
+#showOther input:focus{
+  height: 13px!important;
+}
+#updateShowOther input{
+  width: 20px;
+  float: left;
+}
+#updateShowOther input:focus{
+  height: 13px!important;
+}
+.showOther-group{
+  height: 34px;
+  padding: 7px 0;
+  width: 60px;
+  float: left;
+}
+.modal .modal-body{
+  height: 400px;
+}
+.file-upload{
+  width: 70px;
+  height: 70px;
+  border: 1px lightgrey solid;
+  border-radius: 8px;
+  display: inline-block;
+  float: left;
+  position: relative;
+  background-color: #C4C4C4;
+}
+.filesImg img{
+  width: 68px;
+  height: 68px;
+  border-radius: 8px 8px 8px 8px;
+  cursor: pointer;
+}
+.file-logo-button{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  background-color: #666666;
+  text-align: center;
+  color: white;
+  border-radius: 0 0 8px 8px;
+  font-size: 14px;
+}
+.file-upload-indicator{
+  padding-top: 45px;
+  margin-left: 80px;
+}
+.classify-logo{
+  padding: 0;
+  padding-top: 25px!important;
+  height: 81px!important;
+}

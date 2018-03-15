@@ -345,6 +345,14 @@ export class RequestService {
     headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
     return this.http.post(url,body,{headers: headers});
   }
+  addChannelPartent(name,introduce,columnIds,temId,userId,communityId,show,showOther,order,pid,tokenId,logoUrl,topName){
+    const url = this.IP+'/api/channels';
+    let body = 'name='+name+'&introduce='+introduce+'&columnIds='+columnIds+'&temId='+temId+'&userId='+userId
+      +'&communityId='+communityId+'&show='+show+'&showOther='+showOther+'&order='+order+'&pid='+pid+'&tokenId='+tokenId+'&logoUrl='+logoUrl+'&topName='+topName;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+    return this.http.post(url,body,{headers: headers});
+  }
   //添加频道以及子频道添加
   getChannelDetails(id){
     const url = this.IP+'/api/getSimpleChannel?id='+id;
@@ -356,6 +364,14 @@ export class RequestService {
     const url = this.IP+'/api/updateChannel';
     let body = 'id='+id+'&name='+name+'&introduce='+introduce+'&columnIds='+columnIds+'&temId='+temId+'&userId='+userId
       +'&communityId='+communityId+'&show='+show+'&order='+order+'&pid='+pid+'&tokenId='+tokenId;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+    return this.http.post(url,body,{headers: headers});
+  }
+  updateChannelPartent(id,name,introduce,columnIds,temId,userId,communityId,show,order,pid,tokenId,topName,logoUrl,showOther){
+    const url = this.IP+'/api/updateChannel';
+    let body = 'id='+id+'&name='+name+'&introduce='+introduce+'&columnIds='+columnIds+'&temId='+temId+'&userId='+userId
+      +'&communityId='+communityId+'&show='+show+'&order='+order+'&pid='+pid+'&tokenId='+tokenId+'&topName='+topName+'&logoUrl='+logoUrl+'&showOther='+showOther;
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
     return this.http.post(url,body,{headers: headers});

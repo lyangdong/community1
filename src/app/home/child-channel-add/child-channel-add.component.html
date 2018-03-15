@@ -2,13 +2,13 @@
   <div class="nav">
     <ol class="breadcrumb">
       <!--<li><a href="#" routerLink="/home/school-list">学校</a></li>-->
-      <li><a href="#" routerLink="/home/channel" >频道管理</a></li>
-      <li><a href="#" routerLink="/home/child-channel/{{pid}}" >子频道管理</a></li>
+      <li><a href="#" routerLink="/home/channel">频道管理</a></li>
+      <li><a href="#" routerLink="/home/child-channel/{{pid}}">子频道管理</a></li>
       <li class="active">添加子频道</li>
     </ol>
   </div>
   <!--<div class="colx-xs-12 add-group-header">-->
-    <!--<h6>添加子频道</h6>-->
+  <!--<h6>添加子频道</h6>-->
   <!--</div>-->
   <div class="add-from">
     <div class="col-xs-12 add-group">
@@ -20,7 +20,8 @@
     <div class="col-xs-12 add-group">
       <label class="col-xs-2">频道介绍 <span style="color:red">*</span></label>
       <div class="col-xs-6">
-        <input [(ngModel)]="addChannelInfo.introduce" name="introduce" type="text" class="form-control" placeholder="20个字以内">
+        <input [(ngModel)]="addChannelInfo.introduce" name="introduce" type="text" class="form-control"
+               placeholder="20个字以内">
       </div>
     </div>
     <div class="col-xs-12 add-group">
@@ -34,18 +35,20 @@
         </ul>
       </div>
       <div class="col-xs-2">
-        <button type="button" class="btn btn-info child-channel-choose-btn" data-toggle="modal" data-target="#relationColumn">选择</button>
+        <button type="button" class="btn btn-info child-channel-choose-btn" data-toggle="modal"
+                data-target="#relationColumn">选择
+        </button>
       </div>
     </div>
     <div class="col-xs-12 add-group">
-      <label class="col-xs-2" >是否显示 <span style="color:red">*</span></label>
+      <label class="col-xs-2">是否显示 <span style="color:red">*</span></label>
       <div class="col-xs-4 channel-radio">
         <input type="radio" name="show" value="1" id="channelShow" checked><label for="channelShow">显示 </label>
-        <input type="radio" name="show" value="0" id="channelFade" ><label for="channelFade">不显示 </label>
+        <input type="radio" name="show" value="0" id="channelFade"><label for="channelFade">不显示 </label>
       </div>
     </div>
     <div class="col-xs-12 add-group">
-      <label class="col-xs-2" >显示顺序 <span style="color:red">*</span></label>
+      <label class="col-xs-2">显示顺序 <span style="color:red">*</span></label>
       <div class="col-xs-2">
         <input type="number" [(ngModel)]="order" name="order" class="form-control">
       </div>
@@ -82,7 +85,7 @@
       </div>
     </div>
   </div>
-<!--栏目添加模态框-->
+  <!--栏目添加模态框-->
   <div class="modal fade" id="relationColumn" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -107,7 +110,8 @@
               <div class="column-add-form column-select">
                 <ul>
                   <li *ngFor="let info of treeCheckedInfos" class="column-add-box">
-                    <a class="glyphicon glyphicon-th-list" href="javascript:void(0)" [attr.value]="info.id"> {{info.name}}</a>
+                    <a class="glyphicon glyphicon-th-list" href="javascript:void(0)" [attr.value]="info.id">
+                      {{info.name}}</a>
                   </li>
                 </ul>
               </div>

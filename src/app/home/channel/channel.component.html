@@ -8,11 +8,14 @@
       </ol>
     </div>
     <div class="channel-add-btn ">
-      <button type="button" class="btn btn-success right" data-toggle="modal" data-target="#addChannelModal">添加频道</button>
+      <button type="button" class="btn btn-success right" data-toggle="modal" data-target="#addChannelModal">添加频道
+      </button>
     </div>
   </div>
   <div class="channel-content">
-    <div class="url-hidden"> <input style="" id="url1" type="text" value="http://sq.babyscloud.com/wechat/page/index.html?communityId={{communityId}}&channelId={{copeChannelId}}"> </div>
+    <div class="url-hidden"><input style="" id="url1" type="text"
+                                   value="http://sq.babyscloud.com/wechat/page/index.html?communityId={{communityId}}&channelId={{copeChannelId}}">
+    </div>
     <table class="table">
       <thead>
       <tr>
@@ -27,8 +30,10 @@
         <td class="text-center">{{channel.name}}</td>
         <td class="text-left">{{channel.introduce}}</td>
         <td class="text-center">
-          <a class="border-right border-right-blue" href="javascript:void (0)" [attr.value]="channel.id"  (click)="copyUrl($event)">复制链接</a>
-          <a href="" class="border-right border-right-blue" [attr.value]="channel.id" (click)="getChannelDetails($event)" data-toggle="modal" data-target="#updateChannelModal">信息修改</a>
+          <a class="border-right border-right-blue" href="javascript:void (0)" [attr.value]="channel.id"
+             (click)="copyUrl($event)">复制链接</a>
+          <a href="" class="border-right border-right-blue" [attr.value]="channel.id"
+             (click)="getChannelDetails($event)" data-toggle="modal" data-target="#updateChannelModal">信息修改</a>
           <a href="" class="border-right border-right-blue" routerLink="/home/child-channel/{{channel.id}}">编辑</a>
           <a href="javascript:void (0)" class="border-right" [attr.value]="channel.id" (click)="deleteChannel($event)">删除</a>
         </td>
@@ -43,65 +48,121 @@
       <div class="modal-content">
         <div class="modal-header">
           <!-- <button type="button" class="edit pull-right" id="edit"><span class="glyphicon glyphicon-pencil"></span></button> -->
-          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove close"></span></button>
+          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"
+                                                                                                 class="glyphicon glyphicon-remove close"></span>
+          </button>
           <h4 class="modal-title">新建频道</h4>
         </div>
         <div class="modal-body">
           <form id="newcommunityInfo">
             <div class="form-group">
+              <label class="col-sm-2 col-xs-offset-1 control-label classify-logo" style="padding: 0;height: 60px">logo<span style="color: red"></span></label>
+              <div class="col-sm-9" style="padding-left: 0">
+                <div class="file-upload filesImg" id="filesImg" onclick='javascript:$("#classifyImg").click();'>
+                  <img src="" alt="">
+                  <div class="file-logo-button">上传logo</div>
+                </div>
+                <div class="file-upload-indicator">建议上传尺寸为640*640，大小不超过1M</div>
+                <input (click)="previewHead()" type="file" style="display: none" class="form-control classifyImg" id="classifyImg"
+                       placeholder="" value="">
+              </div>
+            </div>
+            <div class="form-group">
               <label for="communityName">频道名称</label>
-              <input type="text" class="form-control" id="communityName" name="communityName" [(ngModel)]="addChannelInfo.name" placeholder="">
+              <input type="text" class="form-control" id="communityName" name="communityName"
+                     [(ngModel)]="addChannelInfo.name" placeholder="输入频道名称">
               <div class="showRed text-danger"></div>
             </div>
             <div class="form-group">
               <label for="address">频道简介</label>
-              <input [(ngModel)]="addChannelInfo.introduce" type="text" class="form-control" id="address" name="address" placeholder="">
+              <input [(ngModel)]="addChannelInfo.introduce" type="text" class="form-control" id="address" name="address"
+                     placeholder="输入频道简介">
               <div class="showRed text-danger"></div>
             </div>
             <div class="form-group">
-              <label  for="order">显示顺序</label>
-              <input type="number" [(ngModel)]="order"  name="order" id="order" class="form-control">
+              <label for="communityName">顶部名称</label>
+              <input type="text" class="form-control" id="topName" name="topName"
+                     [(ngModel)]="addChannelInfo.topName" placeholder="输入顶部显示名称">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="order">显示顺序</label>
+              <input type="number" [(ngModel)]="order" name="order" id="order" class="form-control">
+            </div>
+            <div class="" id="showOther">
+              <label for="order">显示天气</label>
+              <div class="showOther-group"><input type="radio" name="showOther" checked value="1"> 是</div>
+              <div class="showOther-group"><input type="radio" name="showOther" value="0"> 否</div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" id="cancel" class="btn btn-default btn-close" data-dismiss="modal">取消</button>
-          <button type="button" id="upload" class="btn btn-primary" (click)="addChannel()" >确定</button>
+          <button type="button" id="upload" class="btn btn-primary" (click)="addChannel()">确定</button>
           <!-- (click)="uploadCommunity($event)" -->
         </div>
       </div>
     </div>
   </div>
   <!--修改频道-->
-  <div class="modal fade modal-reset" id="updateChannelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade modal-reset" id="updateChannelModal" tabindex="-1" role="dialog"
+       aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <!-- <button type="button" class="edit pull-right" id="edit"><span class="glyphicon glyphicon-pencil"></span></button> -->
-          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove close"></span></button>
+          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"
+                                                                                                 class="glyphicon glyphicon-remove close"></span>
+          </button>
           <h4 class="modal-title">修改频道</h4>
         </div>
         <div class="modal-body">
           <form id="updateCommunityInfo">
             <div class="form-group">
+              <label class="col-sm-2 col-xs-offset-1 control-label classify-logo">分类图标 <span style="color: red"></span></label>
+              <div class="col-sm-9" style="padding-left: 0">
+                <div class="file-upload filesImg" id="filesImgModify"  onclick='javascript:$("#classifyImgModify").click();'>
+                  <img src="{{undateChannelInfo.logoUrl}}" alt="">
+                  <div class="file-logo-button">上传logo</div>
+                </div>
+                <div class="file-upload-indicator">建议上传尺寸为640*640，大小不超过1M</div>
+                <input (click)="previewHeadModiyf()" type="file" style="display: none" class="form-control " id="classifyImgModify"
+                       placeholder="" value="">
+              </div>
+            </div>
+            <div class="form-group">
               <label for="communityName">频道名称</label>
-              <input type="text" class="form-control" id="updateCommunityName" name="updateCommunityName" [(ngModel)]="undateChannelInfo.name" placeholder="">
+              <input type="text" class="form-control" id="updateCommunityName" name="updateCommunityName"
+                     [(ngModel)]="undateChannelInfo.name" placeholder="请输入频道名字">
               <div class="showRed text-danger"></div>
             </div>
             <div class="form-group">
               <label for="address">频道简介</label>
-              <input [(ngModel)]="undateChannelInfo.introduce" type="text" class="form-control" id="updateAddress" name="address" placeholder="">
+              <input [(ngModel)]="undateChannelInfo.introduce" type="text" class="form-control" id="updateAddress"
+                     name="address" placeholder="请输入频道简介">
               <div class="showRed text-danger"></div>
             </div>
             <div class="form-group">
-              <label  for="order">显示顺序</label>
-              <input type="number" [(ngModel)]="undateChannelInfo.order"  style="width: 165px" name="updateOrder" id="updateOrder" class="form-control">
+              <label for="communityName">顶部名称</label>
+              <input type="text" class="form-control" id="updateTopName" name="updateTopName"
+                     [(ngModel)]="undateChannelInfo.topName" placeholder="请输入顶部显示名称">
+              <div class="showRed text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label for="order">显示顺序</label>
+              <input type="number" [(ngModel)]="undateChannelInfo.order" style="width: 165px" name="updateOrder"
+                     id="updateOrder" class="form-control">
+            </div>
+            <div class="" id="updateShowOther">
+              <label for="order">显示天气</label>
+              <div class="showOther-group"><input id="updateShowOtherYse" type="radio" name="updateShowOther" value="1"> 是</div>
+              <div class="showOther-group"><input id="updateShowOtherNo" type="radio" name="updateShowOther" value="0"> 否</div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default btn-close" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" (click)="updateChannel()" >确定</button>
+          <button type="button" class="btn btn-primary" (click)="updateChannel()">确定</button>
           <!-- (click)="uploadCommunity($event)" -->
         </div>
       </div>
